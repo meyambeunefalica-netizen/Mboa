@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mboa - Community</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "tertiary-container": "#35725d",
+                    "surface-bright": "#fcf9f8",
+                    "tertiary-fixed-dim": "#95d3ba",
+                    "on-secondary-fixed-variant": "#5d4200",
+                    "on-background": "#1b1c1c",
+                    "tertiary-fixed": "#b0f0d6",
+                    "surface-container": "#f0eded",
+                    "secondary": "#7a5900",
+                    "primary-fixed": "#ffdbcd",
+                    "on-tertiary-container": "#b4f4da",
+                    "on-secondary-fixed": "#261900",
+                    "background": "#fcf9f8",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#fdbc13",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-primary-container": "#ffe1d6",
+                    "inverse-on-surface": "#f3f0ef",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e4e2e1",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#a0522d",
+                    "tertiary": "#185946",
+                    "primary": "#823b18",
+                    "secondary-container": "#fdbc13",
+                    "surface-dim": "#dcd9d9",
+                    "inverse-primary": "#ffb596",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#76320f",
+                    "secondary-fixed": "#ffdea3",
+                    "primary-fixed-dim": "#ffb596",
+                    "surface-container-low": "#f6f3f2",
+                    "on-primary-fixed": "#360f00",
+                    "on-tertiary-fixed": "#002117",
+                    "on-tertiary-fixed-variant": "#0b513d",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#944925",
+                    "on-surface": "#1b1c1c",
+                    "outline-variant": "#dac1b8",
+                    "outline": "#87736b",
+                    "surface": "#fcf9f8",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#54433c",
+                    "on-secondary": "#ffffff",
+                    "surface-container-high": "#eae7e7",
+                    "inverse-surface": "#303030",
+                    "on-secondary-container": "#6b4d00"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+                },
+                "fontFamily": {
+                    "headline-md": ["Newsreader"],
+                    "label-md": ["Work Sans"],
+                    "display-lg": ["Newsreader"],
+                    "body-lg": ["Work Sans"],
+                    "headline-lg": ["Newsreader"],
+                    "body-md": ["Work Sans"]
+                },
+                "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                }
+            }
+        }
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #dac1b8; border-radius: 10px; }
+    .pattern-bg {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23a0522d' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    }
+</style>
+</head>
+<body class="bg-surface-bright font-body-md text-on-surface min-h-screen flex">
+
+<main class="flex flex-col h-screen overflow-hidden bg-white pattern-bg">
+<div class="p-6 border-b border-stone-200 bg-white/80 backdrop-blur-sm flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">groups</span>
+<h2 class="font-headline-md text-on-surface text-xl">Communauté</h2>
+</div>
+</div>
+
+<div id="channels-list" class="flex-1 overflow-y-auto p-6 space-y-2">
+    <div class="text-sm text-on-surface-variant p-3">Chargement des canaux...</div>
+</div>
+
+<div id="dm-list" class="hidden flex-1 overflow-y-auto p-6 space-y-2">
+    <div class="text-sm text-on-surface-variant p-3">Chargement des conversations...</div>
+</div>
+
+<div id="messages-area" class="hidden flex-1 flex flex-col">
+<div id="chat-header" class="px-6 py-4 border-b border-stone-100 flex items-center justify-between bg-white/80 backdrop-blur-sm">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">groups</span>
+<h2 id="channel-title" class="font-headline-md text-on-surface text-xl">Nom du canal</h2>
+</div>
+</div>
+
+<div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar"></div>
+
+<div class="p-6 bg-white/80 backdrop-blur-sm border-t border-stone-100">
+<div class="flex items-center gap-3 bg-surface-container-lowest border border-stone-200 rounded-2xl p-2 focus-within:border-primary-container transition-all shadow-sm">
+<input id="message-input" class="flex-1 bg-transparent border-none focus:ring-0 text-body-md placeholder-stone-400" placeholder="Tapez votre message..." type="text" onkeydown="if(event.key==='Enter')sendCommunityMessage()" disabled/>
+<button onclick="sendCommunityMessage()" class="bg-primary-container text-on-primary-container p-2.5 rounded-xl shadow-md hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+</div>
+
+</main>
+
+<script src="js/app.js"></script>
+<script>
+let currentChannelId = null;
+let currentDMUserId = null;
+let channels = [];
+let members = [];
+let dmConversations = [];
+let channelPollInterval = null;
+let dmPollInterval = null;
+let dmConvPollInterval = null;
+const POLL_INTERVAL = 3000;
+
+function startChannelPolling() {
+    stopChannelPolling();
+    loadMessages();
+    channelPollInterval = setInterval(() => {
+        if (currentChannelId) loadMessages();
+    }, POLL_INTERVAL);
+}
+
+function stopChannelPolling() {
+    if (channelPollInterval) {
+        clearInterval(channelPollInterval);
+        channelPollInterval = null;
+    }
+}
+
+function startDMPolling() {
+    stopDMPolling();
+    loadDMs();
+    dmPollInterval = setInterval(() => {
+        if (currentDMUserId) loadDMs();
+    }, POLL_INTERVAL);
+}
+
+function stopDMPolling() {
+    if (dmPollInterval) {
+        clearInterval(dmPollInterval);
+        dmPollInterval = null;
+    }
+}
+
+function startDMConvPolling() {
+    stopDMConvPolling();
+    dmConvPollInterval = setInterval(loadDMConversations, POLL_INTERVAL);
+}
+
+function stopDMConvPolling() {
+    if (dmConvPollInterval) {
+        clearInterval(dmConvPollInterval);
+        dmConvPollInterval = null;
+    }
+}
+
+function stopAllPolling() {
+    stopChannelPolling();
+    stopDMPolling();
+    stopDMConvPolling();
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    if (!requireAuth()) return;
+    loadChannels();
+    loadDMConversations();
+    startDMConvPolling();
+});
+
+window.addEventListener('beforeunload', stopAllPolling);
+
+function switchTab(tab) {
+    const channelsView = document.getElementById('channels-view');
+    const messagesView = document.getElementById('messages-view');
+    const tabChannels = document.getElementById('tab-channels');
+    const tabMessages = document.getElementById('tab-messages');
+
+    if (tab === 'channels') {
+        channelsView.classList.remove('hidden');
+        messagesView.classList.add('hidden');
+        tabChannels.classList.add('text-primary', 'border-b-2', 'border-primary');
+        tabChannels.classList.remove('text-stone-500');
+        tabMessages.classList.remove('text-primary', 'border-b-2', 'border-primary');
+        tabMessages.classList.add('text-stone-500');
+    } else {
+        channelsView.classList.add('hidden');
+        messagesView.classList.remove('hidden');
+        messagesView.classList.add('flex');
+        tabMessages.classList.add('text-primary', 'border-b-2', 'border-primary');
+        tabMessages.classList.remove('text-stone-500');
+        tabChannels.classList.remove('text-primary', 'border-b-2', 'border-primary');
+        tabChannels.classList.add('text-stone-500');
+    }
+}
+
+async function handleSearch(query) {
+    const resultsContainer = document.getElementById('search-results');
+    if (query.length < 2) {
+        resultsContainer.classList.add('hidden');
+        return;
+    }
+
+    try {
+        const res = await API.searchUsers(query);
+        const users = res.data || [];
+        
+        if (users.length === 0) {
+            resultsContainer.innerHTML = `<div class="p-3 text-sm text-stone-400">No users found</div>`;
+        } else {
+            resultsContainer.innerHTML = users.map(u => `
+                <div onclick="startDM(${u.id}, '${escapeHtml(u.first_name)} ${escapeHtml(u.last_name)}')" class="p-3 hover:bg-stone-100 cursor-pointer flex items-center gap-3 border-b last:border-0 border-stone-100">
+                    <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">${u.first_name[0]}${u.last_name[0]}</div>
+                    <div>
+                        <p class="text-sm font-medium">${escapeHtml(u.first_name)} ${escapeHtml(u.last_name)}</p>
+                        <p class="text-xs text-stone-400">${u.level}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+        resultsContainer.classList.remove('hidden');
+    } catch (err) {
+        console.error('Search failed', err);
+    }
+}
+
+async function startDM(userId, name) {
+    document.getElementById('search-results').classList.add('hidden');
+    document.getElementById('user-search').value = '';
+    currentDMUserId = userId;
+    currentChannelId = null;
+    document.getElementById('channel-title').textContent = name;
+    document.getElementById('message-input').disabled = false;
+
+    stopChannelPolling();
+    loadDMs();
+    startDMPolling();
+}
+
+async function loadChannels() {
+    try {
+        const res = await API.getChannels();
+        channels = res.data;
+        const container = document.getElementById('channels-list');
+
+        if (channels.length === 0) {
+            container.innerHTML = `<p class="text-sm text-on-surface-variant p-3">No channels yet. Create one from the settings menu.</p>`;
+            return;
+        }
+
+        container.innerHTML = channels.map(c => `
+            <button onclick="selectChannel(${c.id})" class="w-full text-left p-3 rounded-xl ${currentChannelId === c.id ? 'bg-white border border-primary/20 shadow-sm' : 'hover:bg-white border border-transparent hover:border-stone-200'} transition-all flex items-center gap-3 group">
+                <div class="w-2 h-2 rounded-full ${c.is_member ? 'bg-primary-container' : 'bg-stone-300 group-hover:bg-primary-container'} transition-colors"></div>
+                <div>
+                    <p class="font-label-md ${c.is_member ? 'text-primary' : 'text-on-surface'}">${escapeHtml(c.name)}</p>
+                    <p class="text-xs text-stone-400">${c.member_count || 0} members${c.language_name ? ' • ' + c.language_name : ''}</p>
+                </div>
+            </button>
+        `).join('');
+
+        if (!currentChannelId && channels.length > 0) {
+            const memberChannel = channels.find(c => c.is_member);
+            selectChannel(memberChannel ? memberChannel.id : channels[0].id);
+        }
+    } catch (err) {
+        document.getElementById('channels-list').innerHTML = `<p class="text-sm text-error p-3">Failed to load channels</p>`;
+    }
+}
+
+async function selectChannel(channelId) {
+    currentChannelId = channelId;
+    currentDMUserId = null;
+    const channel = channels.find(c => c.id === channelId);
+    document.getElementById('channel-title').textContent = channel ? channel.name : 'Channel';
+    document.getElementById('message-input').disabled = !channel?.is_member;
+
+    stopDMPolling();
+    loadChannels();
+    await Promise.all([loadMessages(), loadMembers()]);
+    startChannelPolling();
+}
+
+async function loadMessages() {
+    if (!currentChannelId) return;
+    try {
+        const res = await API.getMessages(currentChannelId);
+        const container = document.getElementById('messages-area');
+        const user = Auth.getUser();
+
+        if (!res.data || res.data.length === 0) {
+            container.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-center"><span class="material-symbols-outlined text-6xl text-stone-300 mb-4">chat_bubble_outline</span><p class="font-body-lg text-on-surface-variant">No messages yet. Start the conversation!</p></div>`;
+            return;
+        }
+
+        container.innerHTML = res.data.map(m => {
+            const isMe = m.user_id === user?.id;
+            return `
+                <div class="flex items-start gap-4 max-w-2xl ${isMe ? 'ml-auto flex-row-reverse' : ''}">
+                    <div class="w-10 h-10 rounded-full ${isMe ? 'bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container' : 'bg-primary/10 flex items-center justify-center font-bold text-primary'}">
+                        ${isMe ? 'ME' : (m.first_name?.[0] || '?')}${m.last_name?.[0] || ''}
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <div class="flex items-center gap-2">
+                            <span class="font-label-md ${isMe ? 'text-secondary' : 'text-primary'}">${escapeHtml(m.first_name + ' ' + m.last_name)}</span>
+                            <span class="text-[10px] text-stone-400">${formatTime(m.created_at)}</span>
+                        </div>
+                        <div class="${isMe ? 'bg-primary-container text-on-primary-container' : 'bg-surface-container-low text-on-surface'} p-4 rounded-2xl ${isMe ? 'rounded-tr-none' : 'rounded-tl-none'} border border-stone-100 shadow-sm">
+                            <p class="text-body-md">${escapeHtml(m.content)}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        container.scrollTop = container.scrollHeight;
+    } catch (err) {
+        document.getElementById('messages-area').innerHTML = `<p class="text-sm text-error p-6">Failed to load messages: ${err.message}</p>`;
+    }
+}
+
+async function loadDMConversations() {
+    try {
+        const res = await API.getDMConversations();
+        dmConversations = res.data || [];
+        const container = document.getElementById('dm-list');
+        if (!container) {
+            console.warn('Element dm-list not found');
+            return;
+        }
+        
+        if (dmConversations.length === 0) {
+            container.innerHTML = `<div class="text-center mt-8"><span class="material-symbols-outlined text-4xl text-stone-300 mb-2">chat_bubble_outline</span><p class="text-sm text-stone-400">No conversations yet</p></div>`;
+            return;
+        }
+        
+        container.innerHTML = dmConversations.map(c => `
+            <button onclick="startDM(${c.id}, '${escapeHtml(c.first_name)} ${escapeHtml(c.last_name)}')" class="w-full text-left p-3 rounded-xl hover:bg-white border border-transparent hover:border-stone-200 transition-all flex items-center gap-3">
+                <div class="relative">
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">${c.first_name[0]}${c.last_name[0]}</div>
+                    ${c.unread_count > 0 ? `<div class="absolute -top-1 -right-1 w-4 h-4 bg-primary text-white text-[8px] flex items-center justify-center rounded-full font-bold">${c.unread_count}</div>` : ''}
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-center">
+                        <p class="font-label-md text-on-surface truncate">${escapeHtml(c.first_name)} ${escapeHtml(c.last_name)}</p>
+                        <p class="text-[10px] text-stone-400">${c.last_message_at ? timeAgo(c.last_message_at) : ''}</p>
+                    </div>
+                    <p class="text-xs text-stone-400 truncate">${escapeHtml(c.last_message) || 'Start a conversation'}</p>
+                </div>
+            </button>
+        `).join('');
+    } catch (err) {
+        const dmList = document.getElementById('dm-list');
+        if (dmList) {
+            dmList.innerHTML = `<p class="text-sm text-error p-3">Failed to load conversations</p>`;
+        } else {
+            console.warn('dm-list not found for error display');
+        }
+    }
+}
+
+async function loadDMs() {
+    if (!currentDMUserId) return;
+    try {
+        const res = await API.getDMs(currentDMUserId);
+        const container = document.getElementById('messages-area');
+        const user = Auth.getUser();
+
+        if (!res.data || res.data.length === 0) {
+            container.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-center"><span class="material-symbols-outlined text-6xl text-stone-300 mb-4">chat_bubble_outline</span><p class="font-body-lg text-on-surface-variant">Say hello!</p></div>`;
+            return;
+        }
+
+        container.innerHTML = res.data.map(m => {
+            const isMe = m.sender_id === user?.id;
+            const senderName = isMe ? 'Me' : `${m.sender_first_name} ${m.sender_last_name}`;
+            return `
+                <div class="flex items-start gap-4 max-w-2xl ${isMe ? 'ml-auto flex-row-reverse' : ''}">
+                    <div class="w-10 h-10 rounded-full ${isMe ? 'bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container' : 'bg-primary/10 flex items-center justify-center font-bold text-primary'}">
+                        ${isMe ? 'ME' : (m.sender_first_name?.[0] || '?')}${m.sender_last_name?.[0] || ''}
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <div class="flex items-center gap-2">
+                            <span class="font-label-md ${isMe ? 'text-secondary' : 'text-primary'}">${escapeHtml(senderName)}</span>
+                            <span class="text-[10px] text-stone-400">${formatTime(m.created_at)}</span>
+                        </div>
+                        <div class="${isMe ? 'bg-primary-container text-on-primary-container' : 'bg-surface-container-low text-on-surface'} p-4 rounded-2xl ${isMe ? 'rounded-tr-none' : 'rounded-tl-none'} border border-stone-100 shadow-sm">
+                            <p class="text-body-md">${escapeHtml(m.content)}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        container.scrollTop = container.scrollHeight;
+    } catch (err) {
+        document.getElementById('messages-area').innerHTML = `<p class="text-sm text-error p-6">Failed to load messages</p>`;
+    }
+}
+
+async function sendCommunityMessage() {
+    const input = document.getElementById('message-input');
+    const content = input.value.trim();
+    if (!content) return;
+
+    input.value = '';
+    try {
+        if (currentDMUserId) {
+            await API.sendDM(currentDMUserId, content);
+            loadDMs();
+            loadDMConversations();
+        } else if (currentChannelId) {
+            await API.sendMessage(currentChannelId, content);
+            loadMessages();
+        }
+    } catch (err) {
+        alert('Failed to send message: ' + err.message);
+    }
+}
+
+async function loadMembers() {
+    if (!currentChannelId) return;
+    try {
+        const res = await API.getMembers(currentChannelId);
+        members = res.data || [];
+        document.getElementById('member-count').textContent = members.length;
+
+        const container = document.getElementById('members-list');
+        container.innerHTML = members.map(m => `
+            <div class="flex items-center justify-between group">
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <div class="w-8 h-8 rounded-full bg-stone-200 flex items-center justify-center text-xs font-bold text-stone-600">${m.first_name?.[0]}${m.last_name?.[0]}</div>
+                        <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-surface-container-low rounded-full"></div>
+                    </div>
+                    <div>
+                        <p class="font-label-md text-stone-700 text-sm group-hover:text-primary transition-colors">${escapeHtml(m.first_name + ' ' + m.last_name)}</p>
+                        <p class="text-[10px] text-stone-400">${m.role || 'member'}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    } catch (err) {}
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+</script>
+</body>
+</html>

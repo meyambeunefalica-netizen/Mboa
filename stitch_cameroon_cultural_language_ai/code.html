@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#35725d",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary-fixed-dim": "#95d3ba",
+                        "on-secondary-fixed-variant": "#5d4200",
+                        "on-background": "#1b1c1c",
+                        "tertiary-fixed": "#b0f0d6",
+                        "surface-container": "#f0eded",
+                        "secondary": "#7a5900",
+                        "primary-fixed": "#ffdbcd",
+                        "on-tertiary-container": "#b4f4da",
+                        "on-secondary-fixed": "#261900",
+                        "background": "#fcf9f8",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#fdbc13",
+                        "surface-container-highest": "#e4e2e1",
+                        "on-primary-container": "#ffe1d6",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e4e2e1",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#a0522d",
+                        "tertiary": "#185946",
+                        "primary": "#823b18",
+                        "secondary-container": "#fdbc13",
+                        "surface-dim": "#dcd9d9",
+                        "inverse-primary": "#ffb596",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#76320f",
+                        "secondary-fixed": "#ffdea3",
+                        "primary-fixed-dim": "#ffb596",
+                        "surface-container-low": "#f6f3f2",
+                        "on-primary-fixed": "#360f00",
+                        "on-tertiary-fixed": "#002117",
+                        "on-tertiary-fixed-variant": "#0b513d",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#944925",
+                        "on-surface": "#1b1c1c",
+                        "outline-variant": "#dac1b8",
+                        "outline": "#87736b",
+                        "surface": "#fcf9f8",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#54433c",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#eae7e7",
+                        "inverse-surface": "#303030",
+                        "on-secondary-container": "#6b4d00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1280px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Newsreader"],
+                        "label-md": ["Work Sans"],
+                        "display-lg": ["Newsreader"],
+                        "body-lg": ["Work Sans"],
+                        "headline-lg": ["Newsreader"],
+                        "body-md": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .pattern-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(160, 82, 45, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        .toghu-border {
+            border-bottom: 4px solid transparent;
+            border-image: linear-gradient(90deg, #A0522D 25%, #7a5900 25%, #7a5900 50%, #185946 50%, #185946 75%, #ba1a1a 75%) 1;
+        }
+    </style>
+</head>
+<body class="bg-surface-bright font-body-md text-on-surface pattern-bg min-h-screen flex">
+<div class="flex flex-1 h-screen">
+<!-- Main Content -->
+<main class="flex-1 p-8 md:p-12 overflow-y-auto">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Current Course Card (Large) -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[rgba(160,82,45,0.08)_0px_4px_20px] overflow-hidden flex flex-col md:flex-row relative">
+<div class="absolute top-0 left-0 w-full toghu-border"></div>
+<div class="md:w-1/2 h-64 md:h-auto relative">
+<img alt="Cameroon Highlands" class="w-full h-full object-cover" data-alt="A vibrant landscape of the Cameroonian highlands, featuring rolling green hills and traditional architectural elements under a soft, golden sunrise. The lighting is ethereal and warm, creating a scholarly yet welcoming atmosphere. The composition emphasizes vastness and heritage, aligning with the earthy terracotta and forest green color palette of the LingoCameroon brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDsNStVInEXoDvFMMnKOduujDvrud5EVd8g7OmCtTNcWUkm32VL8dRzpNEqdPpYef1gmYfUkYDKN6Va5eUdrCNZALy9w3wkZdr_7J8rFIQe-jZdvWn7yrR0CKWeoXgvSkuD_io23a7kK39SksWn1oC-uKfeuShrSX2E4kPoB0aUKWeiEtpEbkonWb5kE-3hS_SYnewwAw9w85jkmaGidSw8CAfUQTlegXUFOwai2_GsUcB450-g_Roa6ZXpvDQQcg7xZBK9kHV-KOh"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+</div>
+<div class="md:w-1/2 p-8 flex flex-col justify-center">
+<span class="font-label-md text-label-md text-tertiary mb-2">CURRENT COURSE</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-4">Bulu: Ceremonial Greetings</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Master the intricate language of the Dja-et-Lobo region through authentic audio dialogues.</p>
+<div class="w-full bg-surface-container-highest h-2 rounded-full mb-6">
+<div class="bg-secondary-container h-full rounded-full w-[65%]"></div>
+</div>
+<button class="bg-primary text-on-primary py-3 px-6 rounded-lg font-label-md text-label-md self-start hover:bg-primary/90 transition-all">Resume Lesson</button>
+</div>
+</div>
+<!-- Daily Goal Progress (Square) -->
+<div class="md:col-span-4 bg-white rounded-xl border border-outline-variant p-8 flex flex-col items-center justify-center text-center">
+<h3 class="font-label-md text-label-md text-on-surface-variant mb-6">DAILY GOAL</h3>
+<div class="relative w-40 h-40 flex items-center justify-center mb-6">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-highest" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-secondary-container" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="110" stroke-width="12"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-display-lg text-display-lg text-on-surface">75%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Complete</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">30 / 40 Minutes Today</p>
+<div class="mt-4 flex gap-1">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-label-md text-label-md font-bold">12 Day Streak</span>
+</div>
+</div>
+<!-- Recent Activity (Asymmetric List) -->
+<div class="md:col-span-5 bg-surface-container-low rounded-xl border border-outline-variant p-8">
+<div class="flex justify-between items-center mb-8">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Activity</h3>
+<a class="text-primary font-label-md text-label-md" href="#">View All</a>
+</div>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="bg-tertiary-fixed p-2 rounded-lg text-on-tertiary-fixed">
+<span class="material-symbols-outlined">quiz</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Beti Vocabulary Quiz</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Earned 250 XP • 2 hours ago</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-primary-fixed p-2 rounded-lg text-on-primary-fixed">
+<span class="material-symbols-outlined">record_voice_over</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Bamileke Pronunciation</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Perfect Score! • Yesterday</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-secondary-fixed p-2 rounded-lg text-on-secondary-fixed">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface">Community Live Chat</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Joined Douala Room • 2 days ago</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommended Cultural Stories (Wide Section) -->
+<div class="md:col-span-7 space-y-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recommended for You</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="group relative rounded-xl overflow-hidden h-64 border border-outline-variant cursor-pointer">
+<img alt="Traditional Textile Art" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A close-up photograph of intricate Cameroonian textile patterns, featuring geometric Ndop and Toghu designs with deep indigo, vibrant red, and earthy yellow tones. The lighting is soft and directional, highlighting the tactile texture of the hand-woven fabric. This image represents the cultural richness and traditional roots of the language learning experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPaSPHt3oNWLp-Fr9zhUXU-CVhn8vIA3Piv1VVptHP1Z7AAWp5YpLi5qJYsi0GDxMu4c6BRGJthSwsNZrStSDlMi_zHm11ob2qNlMEDv9bjRSURePajdJRjlaO_4GRi3K9QvM3EGXQNeaTQxoIoRnoP6-7-82rcxqZY9DEjZwVay1HlrVvG7PQTnd6nkL4fRyA-Ms4AADOG2eQ49CVgHXDo2n03WIHqlE3Fg8FWzgGPD5dfJvb77fWTz0hY2eOiJRbN_wUiUJ-RK3M"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+<span class="text-white/80 font-label-md text-label-md text-xs tracking-widest uppercase">Culture</span>
+<h4 class="text-white font-headline-md text-headline-md mt-1">The Legend of the Bamoun King</h4>
+</div>
+</div>
+<div class="group relative rounded-xl overflow-hidden h-64 border border-outline-variant cursor-pointer">
+<img alt="Royal Palace Architecture" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A wide-angle landscape of the Foumban Royal Palace in Cameroon, showcasing its unique and intricate architecture under a clear blue sky. The scene is bright and professional, emphasizing the historical and cultural significance of the region. The color palette is natural and grounded, perfectly fitting the modern-traditional aesthetic of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA65MjtcOLZh7O5wT31c6G-Jks51mj0nP6AeWgnXpQLHcqAq3Rf7LkYauVCi6ScfqeKxm_sEkkAcVpiipkE0ebXRXAPbMZiPJu6d2l9xoRS6zU85LYPvL4gdNfXBorbLEg6YpSfzIn8odfRfbq8dsxxDMtQyeS0GyS6ZhR-FrrYxEqNTFZYT_uW_ZJIzZD8OnzfeCKjwfSsclePHtwpkmp6bK5BgIcS2HrP5jeEgXN1VzYpp7DCmRkeHGdxqeoRwHpSmm_8N-tLjtv7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">
+<span class="text-white/80 font-label-md text-label-md text-xs tracking-widest uppercase">History</span>
+<h4 class="text-white font-headline-md text-headline-md mt-1">Foumban: Architecture of the West</h4>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Language Progress Trackers -->
+<section class="mt-12">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">Language Proficiency</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white p-6 rounded-xl border border-outline-variant flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Bulu</p>
+<h4 class="font-headline-md text-headline-md text-primary">Advanced</h4>
+</div>
+<div class="h-12 w-12 rounded-full border-4 border-tertiary-fixed flex items-center justify-center text-tertiary font-bold">82</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Beti</p>
+<h4 class="font-headline-md text-headline-md text-secondary">Intermediate</h4>
+</div>
+<div class="h-12 w-12 rounded-full border-4 border-secondary-fixed flex items-center justify-center text-secondary font-bold">54</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-outline-variant flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Bamileke</p>
+<h4 class="font-headline-md text-headline-md text-tertiary">Beginner</h4>
+</div>
+<div class="h-12 w-12 rounded-full border-4 border-error-container flex items-center justify-center text-error font-bold">12</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mboa - Connexion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "primary": "#823b18",
+                    "primary-container": "#a0522d",
+                    "on-primary": "#ffffff",
+                    "secondary": "#7a5900",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1b1c1c",
+                    "on-surface-variant": "#54433c",
+                    "outline": "#87736b",
+                    "outline-variant": "#dac1b8",
+                    "surface": "#fcf9f8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f6f3f2"
+                },
+                "fontFamily": {
+                    "display": ["Newsreader"],
+                    "body": ["Work Sans"]
+                }
+            }
+        }
+    }
+</script>
+<style>
+    body {
+        background: linear-gradient(135deg, #fcf9f8 0%, #f0eded 100%);
+    }
+    .input-focus:focus {
+        outline: none;
+        border-color: #823b18;
+        box-shadow: 0 0 0 3px rgba(130, 59, 24, 0.1);
+    }
+</style>
+</head>
+<body class="font-body min-h-screen flex items-center justify-center p-4">
+<div class="w-full max-w-sm">
+    <div class="text-center mb-10">
+        <h1 class="font-display text-4xl font-semibold text-[#823b18] mb-3">Mboa</h1>
+        <p class="text-on-surface-variant text-base font-light">Explorez les langues du Cameroun</p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
+        <div class="flex border-b border-gray-100 mb-8">
+            <button id="tab-login" class="flex-1 pb-3 font-body text-sm font-medium text-[#823b18] border-b-2 border-[#823b18]" onclick="showTab('login')">Connexion</button>
+            <button id="tab-register" class="flex-1 pb-3 font-body text-sm font-medium text-gray-400" onclick="showTab('register')">Inscription</button>
+        </div>
+
+        <div id="login-form">
+            <div id="login-error" class="hidden mb-4 p-3 bg-error-container text-on-error-container rounded-lg text-sm"></div>
+            <form onsubmit="handleLogin(event)">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-on-surface-variant mb-2">Email</label>
+                    <input id="login-email" type="email" required class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-base font-body input-focus transition-all" placeholder="votre@email.com"/>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-on-surface-variant mb-2">Mot de passe</label>
+                    <input id="login-password" type="password" required class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-base font-body input-focus transition-all" placeholder="Minimum 6 caractères"/>
+                </div>
+                <button type="submit" id="login-btn" class="w-full bg-[#823b18] text-white py-3 rounded-lg font-body text-sm font-medium hover:bg-[#6b3014] transition-colors flex items-center justify-center">
+                    <span>Se connecter</span>
+                </button>
+            </form>
+        </div>
+
+        <div id="register-form" class="hidden">
+            <div id="register-error" class="hidden mb-4 p-3 bg-error-container text-on-error-container rounded-lg text-sm"></div>
+            <form onsubmit="handleRegister(event)">
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div>
+                        <label class="block text-sm font-medium text-on-surface-variant mb-2">Prénom</label>
+                        <input id="register-firstname" type="text" required class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-base font-body input-focus transition-all" placeholder="Jean"/>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-on-surface-variant mb-2">Nom</label>
+                        <input id="register-lastname" type="text" required class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-base font-body input-focus transition-all" placeholder="Dupont"/>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-on-surface-variant mb-2">Email</label>
+                    <input id="register-email" type="email" required class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-base font-body input-focus transition-all" placeholder="votre@email.com"/>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-on-surface-variant mb-2">Mot de passe</label>
+                    <input id="register-password" type="password" required minlength="6" class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-4 py-3 text-base font-body input-focus transition-all" placeholder="Minimum 6 caractères"/>
+                </div>
+                <button type="submit" id="register-btn" class="w-full bg-[#823b18] text-white py-3 rounded-lg font-body text-sm font-medium hover:bg-[#6b3014] transition-colors flex items-center justify-center">
+                    <span>S'inscrire</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="mt-6 pt-6 border-t border-gray-100">
+            <p class="text-sm text-on-surface-variant text-center mb-3 font-light">Compte de démonstration</p>
+            <button onclick="handleDemoLogin()" class="w-full bg-surface-container-low border border-outline-variant py-3 rounded-lg font-body text-sm text-on-surface-variant hover:bg-surface-container-lowest transition-colors">
+                Utiliser le compte demo
+            </button>
+        </div>
+    </div>
+
+    <p class="text-center text-xs text-on-surface-variant mt-6 font-light">© 2026 Mboa. Tous droits réservés.</p>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+function showTab(tab) {
+    document.getElementById('login-form').classList.toggle('hidden', tab !== 'login');
+    document.getElementById('register-form').classList.toggle('hidden', tab !== 'register');
+
+    const loginTab = document.getElementById('tab-login');
+    const registerTab = document.getElementById('tab-register');
+
+    if (tab === 'login') {
+        loginTab.className = 'flex-1 pb-3 font-body text-sm font-medium text-[#823b18] border-b-2 border-[#823b18]';
+        registerTab.className = 'flex-1 pb-3 font-body text-sm font-medium text-gray-400';
+    } else {
+        loginTab.className = 'flex-1 pb-3 font-body text-sm font-medium text-gray-400';
+        registerTab.className = 'flex-1 pb-3 font-body text-sm font-medium text-[#823b18] border-b-2 border-[#823b18]';
+    }
+
+    document.querySelectorAll('[id$="-error"]').forEach(el => el.classList.add('hidden'));
+}
+
+function setLoading(btnId, loading) {
+    const btn = document.getElementById(btnId);
+    if (loading) {
+        btn.disabled = true;
+        btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-lg">progress_activity</span>';
+    } else {
+        btn.disabled = false;
+        btn.innerHTML = btnId === 'login-btn' ? '<span>Se connecter</span>' : '<span>S\'inscrire</span>';
+    }
+}
+
+function showError(id, message) {
+    const el = document.getElementById(id);
+    el.textContent = message;
+    el.classList.remove('hidden');
+}
+
+async function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    setLoading('login-btn', true);
+    try {
+        await API.login(email, password);
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirect = urlParams.get('redirect');
+        window.location.href = redirect || 'app.html';
+    } catch (err) {
+        showError('login-error', err.message);
+    } finally {
+        setLoading('login-btn', false);
+    }
+}
+
+async function handleRegister(e) {
+    e.preventDefault();
+    const firstName = document.getElementById('register-firstname').value;
+    const lastName = document.getElementById('register-lastname').value;
+    const email = document.getElementById('register-email').value;
+    const password = document.getElementById('register-password').value;
+
+    setLoading('register-btn', true);
+    try {
+        await API.register(email, password, firstName, lastName);
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirect = urlParams.get('redirect');
+        window.location.href = redirect || 'app.html';
+    } catch (err) {
+        showError('register-error', err.message);
+    } finally {
+        setLoading('register-btn', false);
+    }
+}
+
+async function handleDemoLogin() {
+    setLoading('login-btn', true);
+    try {
+        await API.login('test@mboa.com', 'password123');
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirect = urlParams.get('redirect');
+        window.location.href = redirect || 'app.html';
+    } catch (err) {
+        showError('login-error', err.message);
+    } finally {
+        setLoading('login-btn', false);
+    }
+}
+</script>
+</body>
+</html>

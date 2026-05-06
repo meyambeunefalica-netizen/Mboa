@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html class="light" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mboa - Apprentissage des langues camerounaises</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "tertiary-container": "#35725d",
+                    "surface-bright": "#fcf9f8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-container": "#f0eded",
+                    "surface-container-high": "#eae7e7",
+                    "surface-container-highest": "#e4e2e1",
+                    "primary": "#823b18",
+                    "primary-container": "#a0522d",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#ffe1d6",
+                    "primary-fixed": "#ffdbcd",
+                    "secondary": "#7a5900",
+                    "secondary-container": "#fdbc13",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#185946",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#b0f0d6",
+                    "on-tertiary-container": "#b4f4da",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#1b1c1c",
+                    "on-surface-variant": "#54433c",
+                    "outline-variant": "#dac1b8",
+                    "outline": "#87736b",
+                    "surface": "#fcf9f8",
+                    "on-background": "#1b1c1c"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+                },
+                "fontFamily": {
+                    "headline-md": ["Newsreader"],
+                    "headline-lg": ["Newsreader"],
+                    "display-lg": ["Newsreader"],
+                    "body-md": ["Work Sans"],
+                    "body-lg": ["Work Sans"],
+                    "label-md": ["Work Sans"]
+                },
+                "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                }
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .pattern-bg {
+        background-image: radial-gradient(circle at 2px 2px, rgba(160, 82, 45, 0.05) 1px, transparent 0);
+        background-size: 24px 24px;
+    }
+</style>
+</head>
+<body class="bg-surface-bright font-body-md text-on-surface pattern-bg min-h-screen flex">
+
+<div id="main-layout" class="flex flex-1">
+    <!-- Sidebar Navigation (Unique) -->
+    <aside class="hidden md:flex flex-col gap-4 p-4 w-64 bg-stone-100/50 dark:bg-stone-900/50 border-r border-stone-200 dark:border-stone-800 sticky top-0 h-screen">
+        <div class="flex flex-col items-center py-6 border-b border-stone-200 dark:border-stone-800 mb-4">
+            <div class="w-20 h-20 rounded-xl bg-primary-container p-1 shadow-sm mb-3">
+                <img id="sidebar-avatar" class="w-full h-full object-cover rounded-lg" src="../logoo.png"/>
+            </div>
+            <h2 id="sidebar-name" class="font-headline-md text-headline-md text-on-surface">Loading...</h2>
+            <span id="sidebar-level" class="font-label-md text-label-md text-primary">...</span>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <a id="nav-dashboard" class="flex items-center gap-3 p-3 bg-white dark:bg-stone-800 text-[#A0522D] shadow-sm rounded-md font-label-md text-label-md cursor-pointer" onclick="showPage('dashboard')">
+                <span class="material-symbols-outlined">dashboard</span> Tableau de bord
+            </a>
+            <a id="nav-ai-tutor" class="flex items-center gap-3 p-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 rounded-md font-label-md text-label-md transition-transform hover:translate-x-1 cursor-pointer" onclick="showPage('ai-tutor')">
+                <span class="material-symbols-outlined">smart_toy</span> Tuteur IA
+            </a>
+            <a id="nav-community" class="flex items-center gap-3 p-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 rounded-md font-label-md text-label-md transition-transform hover:translate-x-1 cursor-pointer" onclick="showPage('community')">
+                <span class="material-symbols-outlined">forum</span> Communauté
+            </a>
+            <a id="nav-live-practice" class="flex items-center gap-3 p-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 rounded-md font-label-md text-label-md transition-transform hover:translate-x-1 cursor-pointer" onclick="showPage('live-practice')">
+                <span class="material-symbols-outlined">video_call</span> Pratique en direct
+            </a>
+            <a id="nav-library" class="flex items-center gap-3 p-3 text-stone-600 dark:text-stone-400 hover:bg-stone-200/50 dark:hover:bg-stone-800/50 rounded-md font-label-md text-label-md transition-transform hover:translate-x-1 cursor-pointer" onclick="showPage('library')">
+                <span class="material-symbols-outlined">auto_stories</span> Bibliothèque
+            </a>
+        </nav>
+        <div class="mt-auto pt-4 border-t border-stone-200 dark:border-stone-800 space-y-2">
+            <button onclick="showPage('ai-tutor')" class="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 shadow-md hover:opacity-90 transition-opacity">
+                <span class="material-symbols-outlined">add_circle</span> Nouvelle leçon
+            </button>
+            <button onclick="API.logout(); window.location.href='../login.html'; return false;" class="w-full text-stone-600 dark:text-stone-400 hover:text-error transition-colors py-2 flex items-center justify-center gap-2 font-label-md text-label-md">
+                <span class="material-symbols-outlined">logout</span> Déconnexion
+            </button>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-0 overflow-hidden relative">
+        <iframe id="content-frame" class="w-full h-full border-0" style="display:none;" src="about:blank"></iframe>
+        <div id="page-dashboard" class="p-8 md:p-12 overflow-y-auto h-full">
+            <div class="flex items-center justify-center h-64">
+                <div class="flex items-center gap-3 text-on-surface-variant">
+                    <span class="material-symbols-outlined animate-spin">progress_activity</span>
+                    <span class="font-body-lg">Loading dashboard...</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+function setActiveNav(pageName) {
+    const navIds = {
+        'dashboard': 'nav-dashboard',
+        'ai-tutor': 'nav-ai-tutor',
+        'community': 'nav-community',
+        'live-practice': 'nav-live-practice',
+        'library': 'nav-library'
+    };
+    document.querySelectorAll('aside nav a').forEach(link => {
+        link.classList.remove('bg-white', 'dark:bg-stone-800', 'text-[#A0522D]', 'shadow-sm');
+        link.classList.add('text-stone-600', 'dark:text-stone-400');
+    });
+    const activeId = navIds[pageName];
+    if (activeId) {
+        const activeLink = document.getElementById(activeId);
+        if (activeLink) {
+            activeLink.classList.remove('text-stone-600', 'dark:text-stone-400');
+            activeLink.classList.add('bg-white', 'dark:bg-stone-800', 'text-[#A0522D]', 'shadow-sm');
+        }
+    }
+}
+
+function updateNavUserInfo() {
+    const user = Auth.getUser();
+    if (!user) return;
+    const nameEl = document.getElementById('sidebar-name');
+    if (nameEl) nameEl.textContent = user.first_name;
+    const levelEl = document.getElementById('sidebar-level');
+    if (levelEl) levelEl.textContent = `Level: ${user.level || 'Beginner'}`;
+    if (user.avatar_url) {
+        document.getElementById('sidebar-avatar').src = user.avatar_url;
+    }
+}
+
+function showPage(pageName) {
+    const iframe = document.getElementById('content-frame');
+    const dashboardDiv = document.getElementById('page-dashboard');
+    setActiveNav(pageName);
+    if (!Auth.isAuthenticated()) {
+        window.location.href = '../login.html';
+        return;
+    }
+    document.getElementById('main-layout').classList.remove('hidden');
+    if (pageName === 'dashboard') {
+        iframe.style.display = 'none';
+        dashboardDiv.style.display = 'block';
+        loadDashboard();
+    } else {
+        dashboardDiv.style.display = 'none';
+        iframe.style.display = 'block';
+        iframe.src = pageName + '.html';
+    }
+}
+
+async function loadDashboard() {
+    try {
+        const profile = await API.getUserProfile();
+        const user = profile.data.user;
+        const progress = profile.data.progress || [];
+        const dailyGoal = profile.data.daily_goal || { target_minutes: 30, completed_minutes: 0, is_achieved: false };
+        updateNavUserInfo();
+        const greeting = getGreeting();
+        const goalPercent = dailyGoal.target_minutes > 0 ? Math.round((dailyGoal.completed_minutes / dailyGoal.target_minutes) * 100) : 0;
+        const dashOffset = 440 - (440 * goalPercent / 100);
+        const currentCourse = progress.find(p => p.proficiency_level === 'Intermediate' || p.proficiency_level === 'Advanced') || progress[0];
+        const courseName = currentCourse ? currentCourse.language_name : 'Bulu';
+        const courseLevel = currentCourse ? currentCourse.proficiency_level : 'Débutant';
+        const courseProgress = currentCourse ? Math.min((currentCourse.xp_points / 1000) * 100, 100) : 65;
+        const streakDays = currentCourse ? currentCourse.streak_days || 0 : 12;
+        document.getElementById('page-dashboard').innerHTML = `
+            <div class="mb-10">
+                <h1 class="font-display-lg text-display-lg text-primary mb-2">${greeting}, ${user.first_name}!</h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Votre voyage linguistique continue. Continuez à pratiquer pour maintenir votre série en ${courseName}.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <div class="md:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[rgba(160,82,45,0.08)_0px_4px_20px] overflow-hidden flex flex-col md:flex-row relative">
+                    <div class="absolute top-0 left-0 w-full toghu-border"></div>
+                    <div class="md:w-1/2 h-64 md:h-auto relative bg-primary/10 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-6xl text-primary opacity-30">menu_book</span>
+                    </div>
+                    <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                        <span class="font-label-md text-label-md text-tertiary mb-2">COURS ACTUEL</span>
+                        <h3 class="font-headline-lg text-headline-lg text-on-surface mb-4">${courseName} : Niveau ${courseLevel}</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant mb-6">${currentCourse ? `${currentCourse.lessons_completed} leçons terminées, ${currentCourse.xp_points} XP gagnés` : 'Commencez votre première leçon pour suivre vos progrès.'}</p>
+                        <div class="w-full bg-surface-container-highest h-2 rounded-full mb-6">
+                            <div class="bg-secondary-container h-full rounded-full" style="width: ${courseProgress}%"></div>
+                        </div>
+                        <button onclick="showPage('ai-tutor')" class="bg-primary text-on-primary py-3 px-6 rounded-lg font-label-md text-label-md self-start hover:bg-primary/90 transition-all">Continuer l'apprentissage</button>
+                    </div>
+                </div>
+                <div class="md:col-span-4 bg-white rounded-xl border border-outline-variant p-8 flex flex-col items-center justify-center text-center">
+                    <h3 class="font-label-md text-label-md text-on-surface-variant mb-6">OBJECTIF QUOTIDIEN</h3>
+                    <div class="relative w-40 h-40 flex items-center justify-center mb-6">
+                        <svg class="w-full h-full transform -rotate-90">
+                            <circle class="text-surface-container-highest" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-width="8"></circle>
+                            <circle class="text-secondary-container" cx="80" cy="80" fill="transparent" r="70" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="${dashOffset}" stroke-width="12"></circle>
+                        </svg>
+                        <div class="absolute flex flex-col items-center">
+                            <span class="font-display-lg text-display-lg text-on-surface">${goalPercent}%</span>
+                            <span class="font-label-md text-label-md text-on-surface-variant">Complete</span>
+                        </div>
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant">${dailyGoal.completed_minutes} / ${dailyGoal.target_minutes} minutes aujourd'hui</p>
+                    <div class="mt-4 flex gap-1">
+                        <span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                        <span class="font-label-md text-label-md font-bold">${streakDays} jours de suite</span>
+                    </div>
+                </div>
+            </div>`;
+    } catch (err) {
+        document.getElementById('page-dashboard').innerHTML = `
+            <div class="flex items-center justify-center h-64">
+                <div class="text-center">
+                    <span class="material-symbols-outlined text-4xl text-error mb-4">error</span>
+                    <p class="font-body-lg text-error">${err.message}</p>
+                    <button onclick="loadDashboard()" class="mt-4 bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md">Retry</button>
+                </div>
+            </div>`;
+    }
+}
+
+function getGreeting() {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 18) return 'Good afternoon';
+    return 'Good evening';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (Auth.isAuthenticated()) {
+        updateNavUserInfo();
+        showPage('dashboard');
+    } else {
+        window.location.href = '../login.html';
+    }
+});
+</script>
+</body>
+</html>

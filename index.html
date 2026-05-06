@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LingoCameroon - Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        :root {
+            --primary: #A0522D;
+            --surface: #fcf9f8;
+            --on-surface: #1C1B1B;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--surface);
+            color: var(--on-surface);
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Newsreader', serif;
+        }
+        .pattern-bg {
+            background-image: url('https://images.unsplash.com/photo-1621501115003-8d62635951d8?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .glass-nav {
+            background: rgba(252, 249, 248, 0.8);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header Simple avec Logo -->
+    <header class="fixed top-0 w-full z-50 border-b border-stone-200 bg-[#fcf9f8]">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center">
+            <div class="w-40 h-10 bg-stone-100 border-2 border-dashed border-stone-300 rounded flex items-center justify-center text-stone-400 text-xs font-medium">
+                VOTRE LOGO ICI
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <header class="relative h-[80vh] flex items-center justify-center text-center px-6 pattern-bg mt-16">
+        <div class="absolute inset-0 bg-stone-900/40"></div>
+        <div class="relative z-10 max-w-4xl">
+            <h1 class="text-5xl md:text-7xl text-white font-bold mb-6">
+                Preserving the Echoes of <span class="text-orange-400">Ancestral Wisdom</span>
+            </h1>
+            <p class="text-xl text-stone-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Master the vibrant languages of Cameroon through our immersive AI-powered platform. Connect with your roots, one word at a time.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="login.html" class="bg-[#A0522D] text-white px-8 py-4 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-[#8B4513] transition-all">
+                    Start Learning <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+                <a href="#library" class="border-2 border-white text-white px-8 py-4 rounded-md font-semibold hover:bg-white/10 transition-all">
+                    Explore Languages
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Innovation Section -->
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl text-stone-900 font-bold mb-4">Innovation Rooted in Tradition</h2>
+            <p class="text-stone-600 max-w-2xl mx-auto">Our modern technology is designed to honor and elevate traditional Cameroonian learning methods.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- AI Tutor Card -->
+            <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-stone-100 rounded-lg flex items-center justify-center text-[#A0522D] mb-6">
+                        <span class="material-symbols-outlined">smart_toy</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Interactive AI Tutor</h3>
+                    <p class="text-stone-600 mb-6 leading-relaxed">
+                        Experience personalized language coaching that understands regional dialects and cultural nuances. Our AI adapts to your learning pace and focuses on authentic pronunciation.
+                    </p>
+                </div>
+                <a href="login.html" class="text-[#A0522D] font-semibold flex items-center gap-2 hover:underline">Try AI Practice <span class="material-symbols-outlined">arrow_right_alt</span></a>
+            </div>
+            <!-- Live Practice Card -->
+            <div class="bg-[#3D6B56] p-8 rounded-xl text-white flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-white">video_call</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Live Video Practice</h3>
+                    <p class="text-stone-100/80 mb-6 leading-relaxed">
+                        Connect with native speakers for 1-on-1 sessions. Bridge the gap between theory and real-world conversation in a supportive environment.
+                    </p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex -space-x-2">
+                        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=100&auto=format&fit=crop" class="w-8 h-8 rounded-full border-2 border-[#3D6B56]">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop" class="w-8 h-8 rounded-full border-2 border-[#3D6B56]">
+                        <div class="w-8 h-8 rounded-full bg-stone-700/50 flex items-center justify-center text-[10px] border-2 border-[#3D6B56]">+12</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Library Section -->
+    <section id="library" class="bg-stone-100 py-24 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-6">More Than Just Words</h2>
+                <p class="text-lg text-stone-600 mb-8 leading-relaxed">
+                    Language is the vessel of culture. Explore our curated Library of traditional Cameroonian folklore, historical manuscripts, and contemporary literature.
+                </p>
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-center gap-3 text-stone-700"><span class="material-symbols-outlined text-[#A0522D]">auto_stories</span> Interactive Storytelling modules</li>
+                    <li class="flex items-center gap-3 text-stone-700"><span class="material-symbols-outlined text-[#A0522D]">history_edu</span> Archive of indigenous scripts</li>
+                    <li class="flex items-center gap-3 text-stone-700"><span class="material-symbols-outlined text-[#A0522D]">music_note</span> Traditional songs and rhythmic patterns</li>
+                </ul>
+                <a href="login.html" class="bg-[#2D4A3E] text-white px-8 py-3 rounded-md font-semibold hover:bg-stone-800 transition-colors">Visit The Library</a>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <img src="image/bamileke_dancers.jpg" class="rounded-xl h-64 w-full object-cover shadow-lg" alt="Danseurs Bamileke">
+                <img src="image/eton.jpeg" class="rounded-xl h-64 w-full object-cover shadow-lg" alt="Peuple Eton">
+                <img src="image/mbeti.jpeg" class="rounded-xl h-64 w-full object-cover shadow-lg col-span-2" alt="Peuple Mbeti">
+            </div>
+        </div>
+    </section>
+
+    <!-- History Module - Wiki Culturel -->
+    <section class="py-24 px-6 bg-[#f6f3f2]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-[#1C1B1B] mb-4">Histoire & Patrimoine</h2>
+                <p class="text-lg text-stone-600 max-w-3xl mx-auto leading-relaxed">
+                    Explorez la richesse de l'histoire camerounaise à travers ses peuples, ses royaumes et ses traditions millénaires. Un voyage immersif au cœur des civilisations qui ont façonné le Cameroun d'aujourd'hui.
+                </p>
+            </div>
+
+            <!-- Introduction au module History -->
+            <div class="bg-white rounded-xl border border-stone-200 shadow-sm p-8 md:p-12 mb-16">
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-3xl font-bold mb-6 text-[#823b18]">Le Cameroun : Un Mosaïque de Civilisations</h3>
+                    <p class="text-lg text-stone-700 leading-relaxed mb-6">
+                        Le Cameroun, surnommé "l'Afrique en miniature", abrite plus de 250 groupes ethniques et linguistiques. Cette diversité extraordinaire s'est forgée à travers des millénaires de migrations, de rencontres, de conquêtes et d'échanges commerciaux. De l'imposant royaume Bamoun aux sociétés secrètes des Bamileke, des chasseurs-collecteurs Baka aux royaumes cotiers du Sud-Ouest, chaque peuple a contribué à tisser le riche tapis culturel de cette nation d'Afrique centrale.
+                    </p>
+                    <p class="text-lg text-stone-700 leading-relaxed mb-6">
+                        Ce module vous propose un voyage à travers le temps, à la découverte des grandes civilisations camerounaises. Vous découvrirez comment les routes commerciales transsahariennes ont façonné les royaumes du Nord, comment les migrations bantoues ont peuplé les forêts du Sud et de l'Ouest, et comment les peuples autochtones ont préservé leurs traditions malgré les influences coloniales. Chaque image raconte une histoire, chaque peuple porte une sagesse ancestrale qui continue d'influencer la culture camerounaise contemporaine.
+                    </p>
+                    <p class="text-lg text-stone-700 leading-relaxed">
+                        À travers ce wiki culturel, nous explorons non seulement l'histoire politique et militaire de ces peuples, mais aussi leur organisation sociale, leurs croyances spirituelles, leurs arts, leurs langues et leur contribution à l'identité nationale camerounaise. C'est un hommage aux ancêtres qui ont bâti cette nation, et un trésor pédagogique pour les générations futures.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Article 1 : Bamileke Dancers -->
+            <div class="mb-16 bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="md:grid md:grid-cols-2">
+                    <div class="p-8 md:p-12 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-[#823b18] text-3xl">theater_comedy</span>
+                            <span class="text-sm font-semibold text-[#823b18] uppercase tracking-wider">Royaumes de l'Ouest</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6 text-[#1C1B1B]">Les Bamileke : Maîtres de la Danse et de la Hiérarchie</h3>
+                        <div class="space-y-4 text-stone-700 leading-relaxed">
+                            <p>
+                                Le peuple Bamileke, concentré principalement dans les régions de l'Ouest et du Nord-Ouest du Cameroun, représente l'une des civilisations les plus fascinantes d'Afrique centrale. Avec une population estimée à plus de 3 millions d'âmes, les Bamileke constituent l'un des groupes ethniques les plus dynamiques du pays. Leur histoire remonte au XIVe siècle, lorsque leurs ancêtres, fuyant les conflits dans le Nord (l'actuel royaume du Mandara), migrèrent vers les hauts plateaux de l'Ouest sous la conduite de grands chefs spirituels et guerriers.
+                            </p>
+                            <p>
+                                La société Bamileke est structurée autour d'une hiérarchie complexe et raffinée, dominée par les rois (les "Fon") qui règnent sur des chefferies traditionnelles. Ces chefferies, au nombre d'environ 100 à 150, forment un réseau politique sophistiqué où le pouvoir est exercé selon des règles strictes de succession matrilinéaire. Le Fon, considéré comme un être sacré, intermédiaire entre les ancêtres et les vivants, réside dans un palais (la "chefferie") qui constitue le centre névralgique de la vie politique, religieuse et sociale.
+                            </p>
+                            <p>
+                                La danse chez les Bamileke n'est pas simplement un divertissement ; c'est un langage sacré, un rituel qui connecte le monde visible à l'invisible. Les danses traditionnelles, comme le célèbre "Tcham" ou la "Danse des Masques", sont exécutées lors des cérémonies d'intronisation, des funérailles des notables, des fêtes de récolte et des rituels de purification. Chaque mouvement, chaque geste, chaque costume raconte une histoire, transmet une valeur, honore un ancêtre. Les danseurs, souvent membres de sociétés secrètes comme le "Kwifon", portent des masques magnifiquement sculptés représentant des animaux totémiques ou des esprits protecteurs.
+                            </p>
+                            <p>
+                                L'artisanat Bamileke est réputé mondialement, particulièrement le tissage du "Toghu" (ou Ndop), un tissu de coton bleu indigo aux motifs géométriques complexes, réservé à l'origine à la royauté. La sculpture sur bois, le travail du bronze et du cuivre, ainsi que la poterie, témoignent d'un raffinement artistique exceptionnel. Les Bamileke sont également connus pour leur esprit d'entreprise légendaire, dominant une grande part de l'économie camerounaise, de l'agriculture au commerce, en passant par l'industrie et les services financiers.
+                            </p>
+                            <p>
+                                La langue principale est le "ghomala", mais on compte plus d'une dizaine de dialectes Bamileke, témoignant de la diversité interne de ce peuple. Leur système d'éducation traditionnel, centré sur la transmission orale, les proverbes, les contes et l'initiation, a permis de préserver un patrimoine culturel extraordinaire. Aujourd'hui, les Bamileke continuent de jouer un rôle prédominant dans la construction de l'identité nationale camerounaise, tout en préservant jalousement leurs traditions millénaires.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative min-h-[400px] md:min-h-full">
+                        <img src="image/Bamileke_dancers.jpg" alt="Danseurs Bamileke" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 2 : Bamoun -->
+            <div class="mb-16 bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="md:grid md:grid-cols-2">
+                    <div class="relative min-h-[400px] md:min-h-full md:order-2">
+                        <img src="image/bamoun.jpeg" alt="Royaume Bamoun" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-8 md:p-12 flex flex-col justify-center md:order-1">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-[#185946] text-3xl">account_balance</span>
+                            <span class="text-sm font-semibold text-[#185946] uppercase tracking-wider">Civilisation du Sud-Ouest</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6 text-[#1C1B1B]">Le Royaume Bamoun : Une Citadelle de Sagesse et d'Innovation</h3>
+                        <div class="space-y-4 text-stone-700 leading-relaxed">
+                            <p>
+                                Le royaume Bamoun, situé dans la région de l'Ouest-Cameroun, à proximité de la ville historique de Foumban, représente l'une des plus anciennes et des plus prestigieuses monarchies d'Afrique subsaharienne. Fondé selon la tradition orale au XIVe siècle (vers 1394) par le Sultan Nchare Yen, un prince venu de l'Empire du Kanem-Bornou, le royaume Bamoun s'est développé pendant plus de six siècles, créant une civilisation sophistiquée qui a su préserver son indépendance jusqu'à l'époque coloniale.
+                            </p>
+                            <p>
+                                La capitale, Foumban, est devenue un centre intellectuel et artistique majeur. Le palais royal de Foumban, avec son architecture imposante et ses cours intérieures, abrite l'un des plus riches musées d'art africain traditionnel. Les Sultans Bamoun, particulièrement le célèbre Sultan Ibrahim Njoya (règne 1886-1933), ont développé une écriture originale appelée "Bamum" ou "Shüpamom", composée de plus de 5000 signes pictographiques. Cette écriture, d'abord figurative puis de plus en plus abstraite, est l'une des rares écritures autochtones africaines à avoir atteint un niveau de sophistication comparable aux systèmes d'écriture asiatiques ou européens.
+                            </p>
+                            <p>
+                                Le Sultan Njoya est une figure emblématique de l'histoire camerounaise. Outre l'invention de l'écriture, il a créé une religion syncrétique (le "Mfon"), a promulgué un code civil avancé pour l'époque, a modernisé l'agriculture et a établi des relations diplomatiques avec les puissances européennes tout en préservant la souveraineté de son royaume. Son palais était équipé d'une véritable bibliothèque royale, d'ateliers d'artisans, d'écoles et même d'un système de notification par tambours parlants couvrant tout le royaume.
+                            </p>
+                            <p>
+                                L'art Bamoun est réputé pour ses sculptures en bronze, en laiton et en terre cuite, représentant des figures royales, des animaux symboliques et des scènes de la vie quotidienne. Le masque "Masks" à deux faces, les statuettes de pouvoir et les portes sculptées du palais sont des chefs-d'œuvre reconnus mondialement. La société Bamoun est organisée selon un système de classes sociales bien définies, avec une noblesse puissante, une classe de notables, des artisans spécialisés et un peuple libre.
+                            </p>
+                            <p>
+                                La religion traditionnelle Bamoun vénère un dieu créateur (le "NZAM") et les ancêtres royaux. Les cérémonies d'intronisation, marquées par des rituels complexes et des danses spectaculaires, renforcent la légitimité du nouveau Sultan. Aujourd'hui, le royaume Bamoun, bien que intégré dans l'État camerounais moderne, continue d'exercer une influence culturelle et politique considérable, et le Musée des Arts et Traditions Bamoun à Foumban demeure une destination incontournable pour comprendre la richesse de ce patrimoine exceptionnel.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 3 : Bulu -->
+            <div class="mb-16 bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="md:grid md:grid-cols-2">
+                    <div class="p-8 md:p-12 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-[#7a5900] text-3xl">forest</span>
+                            <span class="text-sm font-semibold text-[#7a5900] uppercase tracking-wider">Peuples de la Forêt</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6 text-[#1C1B1B]">Les Bulu : Gardiens de la Forêt Équatoriale</h3>
+                        <div class="space-y-4 text-stone-700 leading-relaxed">
+                            <p>
+                                Le peuple Bulu appartient au grand groupe ethnique Beti-Pahouin, l'un des plus importants d'Afrique centrale. Installés principalement dans la région du Sud-Cameroun, ainsi que dans les départements du Nyong-et-Soo et de la Mvila, les Bulu sont intimement liés à la forêt dense d'Afrique équatoriale. Leur histoire est celle d'une migration lente mais déterminée, partie des régions du Sud-Soudan il y a plusieurs millénaires, pour atteindre finalement les forêts du Cameroun contemporain.
+                            </p>
+                            <p>
+                                Les Bulu sont traditionnellement des agriculteurs de renommée, cultivant le manioc, les ignames, les plantains et surtout le cacao, qui est devenu la principale culture de rente du Cameroun. Leur société est organisée en clans patrilinéaires, dirigés par des chefs de village (les "Nnom") qui exercent l'autorité politique, judiciaire et religieuse. La structure sociale met l'accent sur le respect des aînés, la solidarité familiale et l'hospitalité, valeurs fondamentales qui ont permis à ce peuple de prospérer dans un environnement géographique souvent difficile.
+                            </p>
+                            <p>
+                                La spiritualité Bulu est profondément animiste, croyant en un dieu créateur suprême (le "Zam") ainsi qu'à une multitude d'esprits de la nature, d'ancêtres et de génies locaux. Les "Nguma" (sociétés d'initiation) jouent un rôle crucial dans l'éducation des jeunes garçons, leur transmettant non seulement les connaissances pratiques de la chasse, de l'agriculture et de la pêche, mais aussi les codes moraux, l'histoire orale et les secrets de la médecine traditionnelle. Les initiés portent des masques sacrés et apprennent les danses rituelles qui accompagnent chaque étape de la vie communautaire.
+                            </p>
+                            <p>
+                                L'art Bulu se manifeste principalement à travers la sculpture sur bois (masques, statues, objets rituels), la vannerie, la poterie et l'ornementation corporelle. Les masques "Ngil", aux visages blanchis à la craie, sont utilisés lors des cérémonies de justice et de purification pour démasquer les sorciers et maintenir l'ordre social. La musique, avec ses tambours "Mvet", ses xylophones et ses chants polyphoniques, accompagne les travaux agricoles, les célébrations et les rituels funéraires.
+                            </p>
+                            <p>
+                                Avec l'arrivée des missionnaires européens au XIXe siècle, de nombreux Bulu se sont convertis au christianisme, mais beaucoup continuent de pratiquer en parallèle leur religion traditionnelle, créant un syncrétisme religieux unique. La langue Bulu, riche et nuancée, fait partie de la famille des langues bantoues et sert de lingua franca dans de nombreuses régions du Sud-Cameroun. Aujourd'hui, le peuple Bulu contribue activement au développement du Cameroun, tout en préservant fièrement son héritage forestier et sa sagesse ancestrale transmise de génération en génération.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative min-h-[400px] md:min-h-full">
+                        <img src="image/bulu.jpeg" alt="Peuple Bulu" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 4 : Bulu 2 -->
+            <div class="mb-16 bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="md:grid md:grid-cols-2">
+                    <div class="relative min-h-[400px] md:min-h-full md:order-2">
+                        <img src="image/bulu2.jpeg" alt="Culture Bulu 2" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-8 md:p-12 flex flex-col justify-center md:order-1">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-[#7a5900] text-3xl">agriculture</span>
+                            <span class="text-sm font-semibold text-[#7a5900] uppercase tracking-wider">Savoir Ancestral</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6 text-[#1C1B1B]">Traditions Agricoles et Médecine du Peuple Bulu</h3>
+                        <div class="space-y-4 text-stone-700 leading-relaxed">
+                            <p>
+                                L'expertise agricole du peuple Bulu constitue l'un des piliers de l'économie camerounaise. Maîtres dans l'art de cultiver le cacao, ils ont transformé les paysages forestiers du Sud en de vastes plantations qui fournissent aujourd'hui une part significative des devises du pays. Mais leur savoir agricole dépasse la simple culture de rente : ils pratiquent une agriculture diversifiée et durable, utilisant des techniques de rotation des cultures, de jachère et de culture associée qui préservent la fertilité des sols depuis des siècles.
+                            </p>
+                            <p>
+                                La forêt n'est pas seulement un espace de production pour les Bulu, c'est une pharmacopée géante. Leur connaissance des plantes médicinales est encyclopédique. Les guérisseurs traditionnels (les "Ngon") utilisent des écorces, des racines, des feuilles et des résines pour traiter une multitude de pathologies. Le "Ndoe" (l'écorce de raphia) est utilisé pour soigner les blessures, tandis que des décoctions complexes permettent de traiter le paludisme, les troubles digestifs et les affections respiratoires. Cette médecine traditionnelle, transmise de père en fils, fait aujourd'hui l'objet d'études scientifiques pour ses propriétés thérapeutiques exceptionnelles.
+                            </p>
+                            <p>
+                                L'organisation sociale autour de l'agriculture structure l'ensemble de la vie Bulu. Les champs sont travaillés collectivement lors des "Njock" (chantiers communautaires), où jeunes et anciens s'entraident pour préparer la terre, planter et récolter. Ces moments de solidarité sont aussi des occasions d'échange de savoirs, de contes et de chants. Les femmes Bulu, gardiennes des semences et spécialistes de la transformation alimentaire, jouent un rôle économique et social fondamental, gérant les marchés locaux et perpétuant les techniques de conservation des aliments.
+                            </p>
+                            <p>
+                                L'architecture traditionnelle Bulu est parfaitement adaptée à l'environnement forestier. Les cases rondes à toit de chaume, construites sur pilotis pour éviter l'humidité et les animaux nuisibles, sont regroupées en villages compacts entourés de palissades protectrices. Le foyer central sert à la fois de cuisine, de chauffage et de lieu de rassemblement familial. Les greniers à grains, surélevés et étanches, permettent de conserver les récoltes pendant plusieurs années, témoignant d'une gestion avancée des ressources alimentaires.
+                            </p>
+                            <p>
+                                La transmission du savoir chez les Bulu s'effectue principalement par l'oralité. Les contes racontés le soir autour du feu, les proverbes énigmatiques, les devinettes et les chants de travail constituent autant de vecteurs pédagogiques. L'initiation "Nkong" marque le passage à l'âge adulte, où les jeunes apprennent les secrets de la forêt, les techniques de chasse, les règles de conduite et la responsabilité envers la communauté. Ce système éducatif traditionnel, bien que confronté aux défis de la modernité, continue d'influencer profondément l'identité culturelle Bulu.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 5 : Douala -->
+            <div class="mb-16 bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="md:grid md:grid-cols-2">
+                    <div class="p-8 md:p-12 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-[#185946] text-3xl">waves</span>
+                            <span class="text-sm font-semibold text-[#185946] uppercase tracking-wider">Côte de l'Océan</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6 text-[#1C1B1B]">Les Douala : Seigneurs du Littoral et Pionniers du Commerce</h3>
+                        <div class="space-y-4 text-stone-700 leading-relaxed">
+                            <p>
+                                Le peuple Douala, installé sur les rives de l'estuaire du Wouri dans le Sud-Ouest du Cameroun, est intimement lié à l'océan Atlantique et aux voies navigables qui pénètrent profondément dans les terres. Douala, la métropole économique du Cameroun, porte le nom de ce peuple dynamique qui a su, au fil des siècles, transformer son environnement lagunaire en un carrefour commercial prospère. Les Douala sont historiquement des pêcheurs, des navigateurs et des intermédiaires commerciaux d'exception.
+                            </p>
+                            <p>
+                                L'histoire des Douala est marquée par l'émergence précoce des relations commerciales avec les Européens. Dès le XVe siècle, les navigateurs portugais, puis hollandais, anglais et français, ont établi des comptoirs sur la côte, faisant des Douala les premiers intermédiaires dans le commerce de l'huile de palme, de l'ivoire et, hélas, de la traite négrière. Cette exposition précoce au commerce international a développé chez les Douala un sens aigu des affaires, une adaptabilité remarquable et un cosmopolitisme qui caractérisent encore aujourd'hui cette communauté urbaine et entrepreneuriale.
+                            </p>
+                            <p>
+                                La société traditionnelle Douala est organisée autour de clans puissants dirigés par des chefs (les "Manga"), dont les plus célèbres sont les Bell et les Akwa. Ces dynasties ont su naviguer habilement entre les puissances coloniales, signant des traités, négociant des privilèges et protégeant leurs intérêts économiques. Le palais du Roi Akwa, bien que transformé sous l'administration coloniale, reste un symbole de cette souveraineté précoloniale. Les cérémonies d'intronisation, marquées par des rites complexes et des offrandes aux esprits de l'eau, soulignent l'importance de la descendance royale et du lien sacré avec l'ancêtre fondateur.
+                            </p>
+                            <p>
+                                La culture Douala est fortement imprégnée par l'environnement aquatique. Les pirogues sculptées, les filets de pêche tissés main, les danses des pêcheurs et les cérémonies de lancement des pirogues nouvelles témoignent d'une relation spirituelle profonde avec l'océan et les fleuves. Le "Malan" (masque aquatique) est utilisé lors des cérémonies liées à l'eau, tandis que les sociétés secrètes comme le "Jengu" vénèrent les esprits des eaux (les sirènes ou "Mami Wata"). Ces croyances syncrétiques, mêlant animisme traditionnel et influences chrétiennes, créent un paysage spirituel unique sur le littoral camerounais.
+                            </p>
+                            <p>
+                                Aujourd'hui, les Douala constituent l'élite économique du Cameroun, dominant le secteur du transport, du commerce, de l'industrie et des services. La ville de Douala, véritable poumon économique de l'Afrique centrale, avec son port en eau profonde, ses marchés animés et ses quartiers d'affaires, reflète l'énergie et l'ambition de ce peuple. Malgré l'urbanisation rapide, les Douala continuent de célébrer leurs traditions à travers des festivals culturels, des cérémonies de purification de la ville et le maintien de la langue Douala, qui reste un important vecteur d'identité culturelle dans le Littoral.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative min-h-[400px] md:min-h-full">
+                        <img src="image/douala.jpeg" alt="Peuple Douala" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 6 : Eton -->
+            <div class="mb-16 bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="md:grid md:grid-cols-2">
+                    <div class="relative min-h-[400px] md:min-h-full md:order-2">
+                        <img src="image/eton.jpeg" alt="Peuple Eton" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-8 md:p-12 flex flex-col justify-center md:order-1">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-[#823b18] text-3xl">terrain</span>
+                            <span class="text-sm font-semibold text-[#823b18] uppercase tracking-wider">Plateaux de l'Inland</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6 text-[#1C1B1B]">Les Eton : Éleveurs et Guerriers des Hauts Plateaux</h3>
+                        <div class="space-y-4 text-stone-700 leading-relaxed">
+                            <p>
+                                Le peuple Eton, établi principalement dans les départements du Nyong-et-Kéllé et de la Lékié, dans la région du Centre-Cameroun, occupe une place particulière dans le groupe ethnique Beti-Pahouin. Historiquement, les Eton sont arrivés dans ces zones après une longue migration depuis l'Est, repoussant ou s'assimilant les populations autochtones. Ils sont principalement des éleveurs de bétail et des agriculteurs, mais leur histoire est aussi celle de redoutables guerriers qui ont su protéger leur territoire contre les infiltrations venues du Nord et de l'Ouest.
+                            </p>
+                            <p>
+                                La société Eton est structurée en clans patrilinéaires, avec une chefferie traditionnelle exercée par des chefs ("Essomba") qui détiennent à la fois le pouvoir politique et la fonction de prêtre suprême. La coutume "Bileti" régit les relations sociales, imposant des règles strictes d'hospitalité, de respect des aînés et de solidarité clanique. Les Eton sont réputés pour leur fierté, leur courage au combat et leur attachement indéfectible aux terres ancestrales, qu'ils considèrent comme sacrées et inviolables.
+                            </p>
+                            <p>
+                                L'élevage du bétail tient une place centrale dans la culture Eton. Le bétail n'est pas seulement une source de richesse matérielle, mais aussi un symbole de prestige social et un élément essentiel des rituels. Les vaches sont offertes en dot lors des mariages, utilisées pour apaiser les esprits lors des cérémonies funéraires et sacrifiées lors des fêtes communautaires. Les bergers Eton, souvent jeunes, développent une connaissance intime du comportement animal et de la botanique pastorale, gérant les pâturages et les points d'eau avec une expertise transmise oralement depuis des générations.
+                            </p>
+                            <p>
+                                La spiritualité Eton est complexe, mêlant culte des ancêtres, vénération de la nature et croyance en un dieu créateur (le "Nzam" ou "Zam"). Les fétiches "Minkudu" sont des objets sacrés chargés de protéger les familles, de guérir les malades et de punir les coupables. Les sociétés d'initiation "So" et "Yang" forment les jeunes garçons aux responsabilités adultes, leur enseignant l'art de la guerre, la gestion du bétail, la sagesse traditionnelle et les secrets de la médecine ancestrale. Les masques sacrés "Mvett" dansent lors des cérémonies importantes, effrayant les esprits malveillants et célébrant la force de la communauté.
+                            </p>
+                            <p>
+                                L'art Eton se manifeste dans la sculpture sur bois (statuettes de pouvoir, masques, tambours), la forge traditionnelle et l'art corporel. Les parures de perles, les colliers en bronze et les bracelets en ivoire marquent le statut social. La musique, rythmée par les tambours "Ekang" et les harpes "Mvet", accompagne les récits épiques des ancêtres et les chants de victoire. Aujourd'hui, les Eton participent activement à la vie politique et économique du Cameroun, tout en préservant jalousement leurs traditions pastorales et leur héritage guerrier, faisant d'eux un peuple à la fois moderne et profondément ancré dans ses racines historiques.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 7 : Mbeti -->
+            <div class="mb-16 bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="md:grid md:grid-cols-2">
+                    <div class="p-8 md:p-12 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-[#7a5900] text-3xl">psychology</span>
+                            <span class="text-sm font-semibold text-[#7a5900] uppercase tracking-wider">Sagesse des Ancêtres</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6 text-[#1C1B1B]">Les Mbeti : Gardiens du Savoir et de la Tradition Orale</h3>
+                        <div class="space-y-4 text-stone-700 leading-relaxed">
+                            <p>
+                                Le peuple Mbeti (ou Mbede) fait partie intégrante du grand groupe Beti, occupant les zones forestières de l'Est-Cameroun et les régions limitrophes de la République Centrafricaine. Souvent considérés comme les gardiens des traditions les plus pures du groupe Beti-Pahouin, les Mbeti ont préservé un patrimoine oral d'une richesse exceptionnelle. Leur histoire est celle d'un peuple de la forêt, maîtres dans l'art de survivre et de prospérer dans l'écosystème complexe de la forêt équatoriale.
+                            </p>
+                            <p>
+                                La tradition orale Mbeti est l'une des plus élaborées d'Afrique centrale. Les "Mvet" (griots et conteurs) sont des personnages sacrés qui mémorisent des épopées de plusieurs jours, racontant la création du monde, les migrations ancestrales, les grands rois et les héros mythiques. Ces récits, accompagnés par la harpe "Mvet" (un instrument à cordes complexe), servent à la fois de livre d'histoire, de code moral et de divertissement. Les contes Mbeti, avec leurs animaux anthropomorphes (le lièvre malin, l'éléphant puissant, l'araignée rusée), transmettent les valeurs de sagesse, de patience, de courage et d'humilité aux jeunes générations.
+                            </p>
+                            <p>
+                                L'organisation sociale Mbeti repose sur le clan et la lignée. Le chef de clan ("Esono") est assisté par un conseil d'anciens qui prennent les décisions importantes selon la coutume "Bilak". La justice traditionnelle est rendue par des assemblées où les sages écoutent les parties, consultent les oracles et prononcent des verdicts basés sur les lois ancestrales. Les sanctions vont de l'amende en nature (chèvres, poulets, vin de palme) à l'exil temporaire ou à la réconciliation rituelle par le sacrifice animal.
+                            </p>
+                            <p>
+                                La spiritualité Mbeti est profondément animiste. Le monde est peuplé d'esprits ("Nkui") qui habitent les arbres sacrés, les rivières, les rochers et les lieux de mémoire. Le meilleur moyen de communiquer avec ces esprits est à travers les offrandes, les libations et les danses rituelles. Les fétiches "Byeri" (objets sacrés contenant les restes des ancêtres) sont conservés dans des sanctuaires familiaux et consultés lors des crises : maladies, stérilité, conflits ou mauvaises récoltes. Les devins ("Ngengang") utilisent des graines d'oracle ou des coquillages pour révéler les causes cachées des problèmes et prescrire les remèdes appropriés.
+                            </p>
+                            <p>
+                                L'artisanat Mbeti est dominé par la vannerie fine, la poterie modelée sans tour, la forge du fer et la sculpture sur bois. Les masques "Gye" sont utilisés lors des cérémonies d'initiation des jeunes filles et des jeunes garçons, marquant leur entrée dans l'âge adulte. Les bijoux en perles de verre, les colliers en os et les ornements en cuivre témoignent d'un goût prononcé pour l'esthétique et le symbolisme. Aujourd'hui, bien que de plus en plus de Mbeti se soient convertis aux religions monothéistes, la pratique des rites traditionnels reste vivace, créant un équilibre subtil entre modernité et tradition, où la sagesse des ancêtres continue d'éclairer le chemin vers l'avenir.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative min-h-[400px] md:min-h-full">
+                        <img src="image/mbeti.jpeg" alt="Peuple Mbeti" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 8 : Mbouda -->
+            <div class="mb-16 bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="md:grid md:grid-cols-2">
+                    <div class="relative min-h-[400px] md:min-h-full md:order-2">
+                        <img src="image/mbouda.jpeg" alt="Peuple Mbouda" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <div class="p-8 md:p-12 flex flex-col justify-center md:order-1">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-[#823b18] text-3xl">agriculture</span>
+                            <span class="text-sm font-semibold text-[#823b18] uppercase tracking-wider">Montagnes de l'Ouest</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6 text-[#1C1B1B]">Les Mbouda : Artisans de la Montagne et Maîtres du Fer</h3>
+                        <div class="space-y-4 text-stone-700 leading-relaxed">
+                            <p>
+                                Le peuple Mbouda (ou Bamboutos) occupe les montagnes spectaculaires du département des Bamboutos, dans la région de l'Ouest-Cameroun. Vivant à des altitudes dépassant souvent 2000 mètres, les Mbouda ont développé une civilisation unique, parfaitement adaptée aux contraintes et aux opportunités de l'environnement montagnard. Leur territoire, dominé par le Mont Mbapit et le Massif du Bamboutos, offre des paysages de prairies, de forêts de montagne et de vallées profondes, créant un écosystème exceptionnel.
+                            </p>
+                            <p>
+                                Historiquement, les Mbouda sont célèbres pour leur maîtrise de la métallurgie. Pendant des siècles, ils ont extrait et transformé le fer des mines locales, produisant des outils agricoles, des armes, des objets rituels et des parures qui étaient échangés dans tout le Cameroun. Les forgerons Mbouda, considérés comme des personnages puissants et mystérieux, détenaient des secrets techniques transmis de père en fils. Leur savoir-faire dans la réduction du minerai de fer et la forge à haute température était si avancé qu'il a inspiré des légendes entières sur leur capacité à "dompter le feu et la pierre".
+                            </p>
+                            <p>
+                                L'agriculture en terrasses est l'une des caractéristiques les plus impressionnantes de la culture Mbouda. Sur les pentes escarpées des montagnes, ils ont construit des systèmes d'irrigation et de terrassement complexes qui permettent de cultiver le maïs, les haricots, les patates douces, les plantains et surtout l'arachide, pour laquelle la région est réputée. Ces terrasses, véritables merveilles d'ingénierie agricole traditionnelle, préservent le sol contre l'érosion, conservent l'humidité et maximisent l'espace cultivable, témoignant d'une gestion environnementale durable et visionnaire.
+                            </p>
+                            <p>
+                                La société Mbouda est organisée en chefferies traditionnelles dirigées par des chefs ("Fon") qui partagent de nombreuses similitudes culturelles avec leurs voisins Bamileke, tout en conservant une identité distincte. Les danses traditionnelles, comme la "Danse des Guérriers" et la "Danse des Moissons", sont exécutées lors des fêtes communautaires, accompagnées par des tambours géants, des flûtes et des chants polyphoniques. Les masques sacrés "Tang" sont portés lors des cérémonies d'initiation, protégeant les jeunes et la communauté contre les forces du mal.
+                            </p>
+                            <p>
+                                L'élevage du bétail, particulièrement les bovins et les caprins, est une activité économique majeure. Le lait et ses dérivés (fromage traditionnel, beurre clarifié) font partie intégrante de l'alimentation Mbouda. Les marchés hebdomadaires des villes comme Mbouda et Bafou sont des centres d'échanges animés où se côtoient agriculteurs, éleveurs, forgerons, tisserands et commerçants venus de toute la région. Aujourd'hui, les Mbouda continuent de valoriser leur terroir montagnard, produisant des denrées agro-pastorales de qualité tout en préservant un mode de vie qui fait la fierté de la région de l'Ouest-Cameroun.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 9 : Mbouda 2 -->
+            <div class="mb-16 bg-white rounded-xl border border-stone-200 shadow-sm overflow-hidden">
+                <div class="md:grid md:grid-cols-2">
+                    <div class="p-8 md:p-12 flex flex-col justify-center">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="material-symbols-outlined text-[#823b18] text-3xl">festival</span>
+                            <span class="text-sm font-semibold text-[#823b18] uppercase tracking-wider">Célébrations Montagnardes</span>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-6 text-[#1C1B1B]">Rituels et Célébrations du Peuple Mbouda</h3>
+                        <div class="space-y-4 text-stone-700 leading-relaxed">
+                            <p>
+                                Les célébrations traditionnelles du peuple Mbouda constituent un spectacle coloré et spirituel qui marque le rythme de l'année agricole et pastorale. La "Fête de la Moisson" (le "Ngoun") est l'événement le plus important, célébrant la fin des récoltes avec des danses, des chants, des offrandes aux ancêtres et des festins communautaires. C'est un moment de gratitude envers les esprits de la montagne, de réconciliation des conflits et de renforcement des liens familiaux et claniques. Les jeunes filles et garçons célibataires sont présentés à la communauté, ouvrant la saison des mariages traditionnels.
+                            </p>
+                            <p>
+                                Les rituels agraires Mbouda sont empreints de symbolismes profonds. Avant chaque campagne agricole, des cérémonies de "bénédiction des semences" sont organisées par les prêtres de la terre ("Kwifon"). Des libations de vin de palme et de lait sont versées sur le sol sacré, tandis que des prières sont adressées aux ancêtres pour demander la pluie, la protection contre les ravageurs et l'abondance des récoltes. La première récolte de chaque saison n'est jamais consommée avant d'avoir été offerte aux esprits sous forme de "prémices", geste de reconnaissance envers les forces invisibles qui nourrissent le peuple.
+                            </p>
+                            <p>
+                                La musique et la danse occupent une place centrale dans la vie cérémonielle Mbouda. Les tambours "Tang" et "Mvet", sculptés dans des troncs d'arbres sacrés, produisent des rythmes puissants qui résonnent dans les vallées. Les flûtes de Pan, les hochets et les sifflets complètent l'orchestre traditionnel. Les danseurs, portant des costumes ornés de perles, de plumes d'oiseaux et de fourrures, exécutent des mouvements chorégraphiques qui imitent les animaux de la montagne ou racontent les exploits des ancêtres guerriers. Chaque danse a une signification précise : danse de guerre, danse de séduction, danse de deuil ou danse de guérison.
+                            </p>
+                            <p>
+                                L'architecture traditionnelle Mbouda est adaptée au climat montagnard, avec des maisons rondes à toit de chaume pentu pour évacuer les fortes pluies, construites en pierres sèches et en bois. L'intérieur est chaleureux, avec un foyer central qui sert à la cuisine et au chauffage. Les greniers sur pilotis protègent les récoltes des rongeurs et de l'humidité. Les villages Mbouda, nichés dans les vallées ou perchés sur les crêtes, offrent une vue panoramique spectaculaire et une protection naturelle contre les invasions, témoignant d'une planification urbaine traditionnelle d'une grande sagesse écologique.
+                            </p>
+                            <p>
+                                Aujourd'hui, les célébrations Mbouda ont évolué pour intégrer des éléments du christianisme et de la modernité, créant un syncrétisme culturel harmonieux. Les fêtes de Noël et de Pâques sont célébrées avec faste, mêlant processions religieuses et danses traditionnelles. Les festivals culturels annuels attirent des visiteurs du monde entier, venus découvrir l'hospitalité légendaire des montagnards, déguster la bière de mil locale, admirer les tissus traditionnels et participer aux rites de purification des sources sacrées. Le peuple Mbouda, fier de son héritage montagnard, continue d'être un pilier de la diversité culturelle camerounaise.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="relative min-h-[400px] md:min-h-full">
+                        <img src="image/mbouda2.jpeg" alt="Culture Mbouda 2" class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conclusion du module -->
+            <div class="bg-[#823b18] rounded-xl p-8 md:p-12 text-white">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h3 class="text-3xl font-bold mb-6">Préserver pour l'Avenir</h3>
+                    <p class="text-lg leading-relaxed mb-6 text-white/90">
+                        Ce module History n'est qu'une fenêtre ouverte sur la richesse inestimable du patrimoine culturel camerounais. Chaque peuple, chaque image, chaque récit porte en lui une parcelle de la sagesse humaine. En explorant ces histoires, nous ne faisons pas que découvrir le passé : nous comprenons le présent et nous préparons l'avenir. Car connaître ses racines, c'est savoir d'où l'on vient pour mieux décider où l'on va.
+                    </p>
+                    <p class="text-lg leading-relaxed text-white/90">
+                        LingoCameroon s'engage à préserver, documenter et transmettre ce patrimoine linguistique et culturel aux générations futures. Nous vous invitons à continuer votre exploration à travers nos modules d'apprentissage linguistique, où chaque mot appris est une porte ouverte sur une culture millénaire. Ensemble, préservons l'écho de la sagesse ancestrale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <h3 class="text-white text-xl font-bold mb-6">LingoCameroon</h3>
+                    <p class="text-sm leading-relaxed mb-6">Dedicated to the preservation and promotion of Cameroon's 250+ indigenous languages and community.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Platform</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Dashboard</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">AI Tutor</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API Access</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Resources</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Library</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Community Forum</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Story Submissions</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Educator Portal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Our Mission</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-stone-800 text-center text-xs">
+                © 2024 LingoCameroon. All cultural intellectual property belongs to their respective communities.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

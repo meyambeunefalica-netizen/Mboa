@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mboa - Apprentissage des langues camerounaises</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        :root {
+            --primary: #A0522D;
+            --surface: #fcf9f8;
+            --on-surface: #1C1B1B;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--surface);
+            color: var(--on-surface);
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Newsreader', serif;
+        }
+        .pattern-bg {
+            background-image: url('https://images.unsplash.com/photo-1621501115003-8d62635951d8?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .glass-nav {
+            background: rgba(252, 249, 248, 0.8);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 border-b border-stone-200 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-8">
+                <!-- Espace Logo réservé -->
+                <div class="w-40 h-10 bg-stone-100 border-2 border-dashed border-stone-300 rounded flex items-center justify-center text-stone-400 text-xs font-medium">
+                    VOTRE LOGO ICI
+                </div>
+                <div class="hidden md:flex gap-6 text-sm font-medium">
+                    <a href="#" class="text-[#A0522D] border-b-2 border-[#A0522D]">Dashboard</a>
+                    <a href="#" class="text-stone-600 hover:text-[#A0522D] transition-colors">AI Tutor</a>
+                    <a href="#" class="text-stone-600 hover:text-[#A0522D] transition-colors">Community</a>
+                    <a href="#" class="text-stone-600 hover:text-[#A0522D] transition-colors">Library</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-stone-600"><span class="material-symbols-outlined">notifications</span></button>
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop" class="w-8 h-8 rounded-full border border-stone-200" alt="User profile">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-[80vh] flex items-center justify-center text-center px-6 pattern-bg mt-16">
+        <div class="absolute inset-0 bg-stone-900/40"></div>
+        <div class="relative z-10 max-w-4xl">
+            <h1 class="text-5xl md:text-7xl text-white font-bold mb-6">
+                Préserver les échos de la <span class="text-orange-400">Sagesse Ancestrale</span>
+            </h1>
+            <p class="text-xl text-stone-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Maîtrisez les langues vibrantes du Cameroun grâce à notre plateforme immersive propulsée par l'IA. Reconnectez-vous avec vos racines, un mot à la fois.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button id="btn-start-learning" class="bg-[#A0522D] text-white px-8 py-4 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-[#8B4513] transition-all cursor-pointer">
+                    Start Learning <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <button id="btn-explore-languages" class="border-2 border-white text-white px-8 py-4 rounded-md font-semibold hover:bg-white/10 transition-all cursor-pointer">
+                    Explore Languages
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Innovation Section -->
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl text-stone-900 font-bold mb-4">Innovation enracinée dans la tradition</h2>
+            <p class="text-stone-600 max-w-2xl mx-auto">Notre technologie moderne est conçue pour honorer et élever les méthodes d'apprentissage traditionnelles camerounaises.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- AI Tutor Card -->
+            <div class="bg-white p-8 rounded-xl border border-stone-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-stone-100 rounded-lg flex items-center justify-center text-[#A0522D] mb-6">
+                        <span class="material-symbols-outlined">smart_toy</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Tuteur IA interactif</h3>
+                    <p class="text-stone-600 mb-6 leading-relaxed">
+                        Découvrez un coaching linguistique personnalisé qui comprend les dialectes régionaux et les nuances culturelles. Notre IA s'adapte à votre rythme d'apprentissage et se concentre sur la prononciation authentique.
+                    </p>
+                </div>
+                <a href="#" class="text-[#A0522D] font-semibold flex items-center gap-2 hover:underline">Essayer le Tuteur IA <span class="material-symbols-outlined">arrow_right_alt</span></a>
+            </div>
+            <!-- Live Practice Card -->
+            <div id="card-live-practice" class="bg-[#3D6B56] p-8 rounded-xl text-white flex flex-col justify-between cursor-pointer">
+                <div>
+                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-white">video_call</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Pratique vidéo en direct</h3>
+                    <p class="text-stone-100/80 mb-6 leading-relaxed">
+                        Connectez-vous avec des locuteurs natifs pour des sessions en tête-à-tête. Comblez le fossé entre la théorie et la conversation réelle dans un environnement bienveillant.
+                    </p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex -space-x-2">
+                        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=100&auto=format&fit=crop" class="w-8 h-8 rounded-full border-2 border-[#3D6B56]">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&auto=format&fit=crop" class="w-8 h-8 rounded-full border-2 border-[#3D6B56]">
+                        <div class="w-8 h-8 rounded-full bg-stone-700/50 flex items-center justify-center text-[10px] border-2 border-[#3D6B56]">+12</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural Library Section -->
+    <section class="bg-stone-100 py-24 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-6">More Than Just Words</h2>
+                <p class="text-lg text-stone-600 mb-8 leading-relaxed">
+                    Language is the vessel of culture. Explore our curated Library of traditional Cameroonian folklore, historical manuscripts, and contemporary literature.
+                </p>
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-center gap-3 text-stone-700"><span class="material-symbols-outlined text-[#A0522D]">auto_stories</span> Modules de narration interactive</li>
+                    <li class="flex items-center gap-3 text-stone-700"><span class="material-symbols-outlined text-[#A0522D]">history_edu</span> Archives des écritures indigènes</li>
+                    <li class="flex items-center gap-3 text-stone-700"><span class="material-symbols-outlined text-[#A0522D]">music_note</span> Chants traditionnels et rythmes</li>
+                </ul>
+                <button id="btn-visit-library" class="bg-[#2D4A3E] text-white px-8 py-3 rounded-md font-semibold hover:bg-stone-800 transition-colors cursor-pointer">Visit The Library</button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <img src="https://images.unsplash.com/photo-1590422502737-f00e93a62d08?q=80&w=600&auto=format&fit=crop" class="rounded-xl h-64 w-full object-cover shadow-lg" alt="Mask">
+                <img src="https://images.unsplash.com/photo-1615412702991-86311657850f?q=80&w=600&auto=format&fit=crop" class="rounded-xl h-64 w-full object-cover shadow-lg" alt="Forest">
+                <img src="https://images.unsplash.com/photo-1605377349974-98444a7f050e?q=80&w=600&auto=format&fit=crop" class="rounded-xl h-64 w-full object-cover shadow-lg col-span-2" alt="Drum">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <h3 class="text-white text-xl font-bold mb-6">LingoCameroon</h3>
+                    <p class="text-sm leading-relaxed mb-4">Dedicated to the preservation and promotion of Cameroon's 250+ indigenous languages and community.</p>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[#A0522D] text-base">mail</span> klorelbegne@gmail.com</p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[#A0522D] text-base">mail</span> Banawilly65@gmail.com</p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[#A0522D] text-base">phone</span> 659 025 138</p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[#A0522D] text-base">phone</span> 657 402 854</p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[#A0522D] text-base">person</span> BEGNE KOUB Serge</p>
+                        <p class="flex items-center gap-2"><span class="material-symbols-outlined text-[#A0522D] text-base">person</span> Bana guy William</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Plateforme</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Tableau de bord</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tuteur IA</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Tarifs</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Accès API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Ressources</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Bibliothèque</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Forum Communauté</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Soumissions d'histoires</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Portail Éducateur</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Entreprise</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Notre Mission</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Politique de Confidentialité</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Nous Contacter</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Contact</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[#A0522D] text-base">mail</span>
+                            <div>
+                                <p>klorelbegne@gmail.com</p>
+                                <p class="text-xs text-stone-500">Banawilly65@gmail.com</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[#A0522D] text-base">phone</span>
+                            <div>
+                                <p>659 025 138</p>
+                                <p class="text-xs text-stone-500">657 402 854</p>
+                            </div>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[#A0522D] text-base">person</span>
+                            <div>
+                                <p>BEGNE KOUB Serge</p>
+                                <p class="text-xs text-stone-500">Bana guy William</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-stone-800 text-center text-xs">
+                © 2026 Mboa. Toute la propriété intellectuelle culturelle appartient à leurs communautés respectives.
+            </div>
+        </div>
+    </footer>
+
+<script>
+    // Vérifier si l'utilisateur est connecté
+    function isAuthenticated() {
+        return !!localStorage.getItem('lingo_token');
+    }
+
+    // Attacher les événements aux boutons via IDs
+    document.addEventListener('DOMContentLoaded', function() {
+        // Start Learning
+        const startBtn = document.getElementById('btn-start-learning');
+        if (startBtn) {
+            startBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!isAuthenticated()) {
+                    window.location.href = 'login.html?redirect=app.html';
+                    return;
+                }
+                window.location.href = 'app.html';
+            });
+        }
+
+        // Explore Languages
+        const exploreBtn = document.getElementById('btn-explore-languages');
+        if (exploreBtn) {
+            exploreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!isAuthenticated()) {
+                    window.location.href = 'login.html?redirect=community.html';
+                    return;
+                }
+                window.location.href = 'community.html';
+            });
+        }
+
+        // Visit The Library
+        const libraryBtn = document.getElementById('btn-visit-library');
+        if (libraryBtn) {
+            libraryBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!isAuthenticated()) {
+                    window.location.href = 'login.html?redirect=library.html';
+                    return;
+                }
+                window.location.href = 'library.html';
+            });
+        }
+
+        // Try AI Practice (lien)
+        const aiLink = document.querySelector('a[href="#"]');
+        if (aiLink && aiLink.textContent.includes('Try AI Practice')) {
+            aiLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!isAuthenticated()) {
+                    window.location.href = 'login.html?redirect=ai-tutor.html';
+                    return;
+                }
+                window.location.href = 'ai-tutor.html';
+            });
+        }
+
+        // Live Video Practice (carte)
+        const liveCard = document.getElementById('card-live-practice');
+        if (liveCard) {
+            liveCard.style.cursor = 'pointer';
+            liveCard.addEventListener('click', function() {
+                if (!isAuthenticated()) {
+                    window.location.href = 'login.html?redirect=live-practice.html';
+                    return;
+                }
+                window.location.href = 'live-practice.html';
+            });
+        }
+    });
+</script>
+
+</body>
+</html>

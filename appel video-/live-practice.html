@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Practice — LingoCameroon</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  body { font-family: 'Inter', sans-serif; background: #faf9f7; }
+  .video-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .video-tile { position: relative; background: #1a1a2e; border-radius: 12px; overflow: hidden;
+    aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; }
+  .video-tile video { width: 100%; height: 100%; object-fit: cover; }
+  .video-tile .name-tag { position: absolute; bottom: 8px; left: 10px;
+    background: rgba(0,0,0,.55); color: #fff; padding: 2px 8px;
+    border-radius: 6px; font-size: 12px; }
+  .video-tile .avatar-fallback { width: 72px; height: 72px; border-radius: 50%;
+    background: #3B3B6E; display: flex; align-items: center; justify-content: center;
+    font-size: 28px; color: #fff; font-weight: 600; }
+  .ctrl-btn { padding: 10px 18px; border-radius: 999px; font-weight: 500;
+    font-size: 14px; transition: all .15s; cursor: pointer; border: none; }
+  .ctrl-btn.on  { background: #1D9E75; color: #fff; }
+  .ctrl-btn.off { background: #E24B4A; color: #fff; }
+  .ctrl-btn.neutral { background: #e7e5e0; color: #3d3d3a; }
+  .chat-msg { padding: 6px 10px; border-radius: 8px; max-width: 78%; font-size: 13px; }
+  .chat-msg.me    { background: #1D9E75; color: #fff; align-self: flex-end; }
+  .chat-msg.other { background: #e7e5e0; color: #3d3d3a; align-self: flex-start; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+  .status-dot.live { background: #1D9E75; animation: pulse-dot 2s infinite; }
+  .status-dot.waiting { background: #EF9F27; }
+  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .panel { background: #fff; border-radius: 14px; box-shadow: 0 1px 4px rgba(0,0,0,.07); }
+  #session-list .session-card { border: 1px solid #e7e5e0; border-radius: 10px; padding: 14px 16px;
+    cursor: pointer; transition: box-shadow .15s; }
+  #session-list .session-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.1); }
+  #toast { position: fixed; bottom: 24px; right: 24px; z-index: 99;
+    background: #2C2C2A; color: #fff; padding: 10px 18px; border-radius: 10px;
+    font-size: 13px; opacity: 0; transition: opacity .3s; pointer-events: none; }
+  #toast.show { opacity: 1; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- ── Toast ─────────────────────────────────────────────────────────── -->
+<div id="toast"></div>
+
+<!-- ── Header simple ─────────────────────────────────────────────────── -->
+<header class="bg-white border-b border-stone-200 px-6 py-3 flex items-center justify-between sticky top-0 z-10">
+  <div class="flex items-center gap-3">
+    <span class="text-xl font-bold text-amber-700">🌍 LingoCameroon</span>
+    <span class="text-stone-400">|</span>
+    <span class="text-stone-600 font-medium text-sm">Pratique Live</span>
+  </div>
+  <div class="flex items-center gap-3">
+    <span id="hd-user-name" class="text-sm text-stone-600"></span>
+    <button onclick="handleLogout()"
+      class="text-xs text-stone-500 hover:text-red-500 transition-colors">Déconnexion</button>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     VUE 1 — Liste des sessions  (affiché quand pas en session)
+══════════════════════════════════════════════════════════════════════════ -->
+<div id="view-sessions" class="max-w-4xl mx-auto p-6">
+
+  <div class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-bold text-stone-800">Sessions en direct</h1>
+      <p class="text-stone-500 text-sm mt-1">Rejoignez une session ou créez-en une nouvelle</p>
+    </div>
+    <button id="btn-create" onclick="showCreateModal()"
+      class="ctrl-btn on flex items-center gap-2">
+      ＋ Créer une session
+    </button>
+  </div>
+
+  <!-- Filtre langue -->
+  <div class="flex gap-3 mb-4 flex-wrap">
+    <select id="filter-lang" onchange="loadSessions()"
+      class="border border-stone-200 rounded-lg px-3 py-2 text-sm text-stone-700 bg-white">
+      <option value="">Toutes les langues</option>
+    </select>
+    <button onclick="loadSessions()"
+      class="ctrl-btn neutral text-sm">↻ Actualiser</button>
+  </div>
+
+  <div id="session-list" class="grid gap-3"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     VUE 2 — Salle de visioconférence
+══════════════════════════════════════════════════════════════════════════ -->
+<div id="view-room" class="hidden max-w-7xl mx-auto p-4">
+  <div class="flex gap-4" style="height: calc(100vh - 80px)">
+
+    <!-- Zone vidéo principale -->
+    <div class="flex-1 flex flex-col gap-3">
+      <!-- Info session -->
+      <div class="panel px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span id="room-status-dot" class="status-dot waiting"></span>
+          <span id="room-title" class="font-semibold text-stone-800 text-sm"></span>
+          <span id="room-lang" class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full"></span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span id="participant-count" class="text-xs text-stone-500">1 participant</span>
+          <span id="room-timer" class="text-xs font-mono text-stone-400">00:00</span>
+        </div>
+      </div>
+
+      <!-- Grille vidéo -->
+      <div class="panel flex-1 p-3 overflow-auto">
+        <div id="video-grid" class="video-grid h-full">
+          <!-- Tuile locale -->
+          <div id="tile-local" class="video-tile">
+            <video id="video-local" autoplay muted playsinline></video>
+            <div class="name-tag">Vous</div>
+            <div id="mic-indicator-local" class="absolute top-2 right-2 text-green-400 text-xs">🎤</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barre de contrôle -->
+      <div class="panel px-4 py-3 flex items-center justify-center gap-3 flex-wrap">
+        <button id="btn-mic" onclick="toggleMic()"
+          class="ctrl-btn on flex items-center gap-2">
+          🎤 Micro activé
+        </button>
+        <button id="btn-cam" onclick="toggleCam()"
+          class="ctrl-btn on flex items-center gap-2">
+          📷 Caméra activée
+        </button>
+        <button id="btn-start-session" onclick="handleStartSession()"
+          class="ctrl-btn neutral hidden flex items-center gap-2">
+          ▶ Démarrer la session
+        </button>
+        <button onclick="handleLeave()"
+          class="ctrl-btn off flex items-center gap-2">
+          ✕ Quitter
+        </button>
+        <div id="status-text" class="text-xs text-stone-400 w-full text-center mt-1"></div>
+      </div>
+    </div>
+
+    <!-- Panneau latéral: participants + chat -->
+    <div class="w-72 flex flex-col gap-3">
+      <!-- Participants -->
+      <div class="panel p-4 flex-shrink-0">
+        <h3 class="text-sm font-semibold text-stone-700 mb-3">Participants</h3>
+        <div id="participants-list" class="space-y-2 text-sm text-stone-600"></div>
+      </div>
+
+      <!-- Chat -->
+      <div class="panel flex-1 flex flex-col p-4 min-h-0">
+        <h3 class="text-sm font-semibold text-stone-700 mb-3">Chat</h3>
+        <div id="chat-messages"
+          class="flex-1 overflow-y-auto flex flex-col gap-2 mb-3 text-sm min-h-0"></div>
+        <div class="flex gap-2">
+          <input id="chat-input" type="text" placeholder="Message…"
+            onkeydown="if(event.key==='Enter') sendChat()"
+            class="flex-1 border border-stone-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-300">
+          <button onclick="sendChat()"
+            class="ctrl-btn on text-xs px-3">➤</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     MODAL — Créer une session
+══════════════════════════════════════════════════════════════════════════ -->
+<div id="modal-create" class="hidden fixed inset-0 z-50 flex items-center justify-center"
+  style="background: rgba(0,0,0,.4)">
+  <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md mx-4">
+    <h2 class="text-lg font-bold text-stone-800 mb-4">Créer une session live</h2>
+    <div class="space-y-3">
+      <div>
+        <label class="text-xs font-medium text-stone-600">Titre de la session</label>
+        <input id="new-title" type="text" placeholder="Ex: Conversation Ewondo débutant"
+          class="w-full border border-stone-200 rounded-lg px-3 py-2 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-300">
+      </div>
+      <div>
+        <label class="text-xs font-medium text-stone-600">Langue</label>
+        <select id="new-lang"
+          class="w-full border border-stone-200 rounded-lg px-3 py-2 text-sm mt-1 bg-white">
+        </select>
+      </div>
+      <div>
+        <label class="text-xs font-medium text-stone-600">Description (optionnel)</label>
+        <textarea id="new-desc" rows="2" placeholder="Objectifs de la session…"
+          class="w-full border border-stone-200 rounded-lg px-3 py-2 text-sm mt-1 resize-none focus:outline-none focus:ring-2 focus:ring-amber-300"></textarea>
+      </div>
+      <div>
+        <label class="text-xs font-medium text-stone-600">Max. participants</label>
+        <input id="new-max" type="number" value="6" min="2" max="20"
+          class="w-full border border-stone-200 rounded-lg px-3 py-2 text-sm mt-1">
+      </div>
+    </div>
+    <div class="flex gap-3 mt-5">
+      <button onclick="closeCreateModal()"
+        class="flex-1 ctrl-btn neutral">Annuler</button>
+      <button onclick="createSession()"
+        class="flex-1 ctrl-btn on">Créer et rejoindre</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════════════════════ -->
+<script src="js/app.js"></script>
+<script src="js/webrtc-client.js"></script>
+<script>
+// ── État global ───────────────────────────────────────────────────────────────
+let rtc = null;
+let currentSession = null;
+let micEnabled = true;
+let camEnabled = true;
+let sessionStartTime = null;
+let timerInterval = null;
+let languages = [];
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', async () => {
+  if (!requireAuth()) return;
+
+  const user = Auth.getUser();
+  document.getElementById('hd-user-name').textContent =
+    user ? user.first_name + ' ' + user.last_name : '';
+
+  await loadLanguages();
+  await loadSessions();
+});
+
+// ── Langues ───────────────────────────────────────────────────────────────────
+async function loadLanguages() {
+  try {
+    const res = await API.getLanguages();
+    languages = res.data || [];
+
+    const filterSel = document.getElementById('filter-lang');
+    const newLangSel = document.getElementById('new-lang');
+    languages.forEach(l => {
+      filterSel.insertAdjacentHTML('beforeend',
+        `<option value="${l.id}">${l.name}</option>`);
+      newLangSel.insertAdjacentHTML('beforeend',
+        `<option value="${l.id}">${l.name}</option>`);
+    });
+  } catch {}
+}
+
+// ── Liste des sessions ────────────────────────────────────────────────────────
+async function loadSessions() {
+  const langId = document.getElementById('filter-lang').value || null;
+  const list = document.getElementById('session-list');
+  list.innerHTML = '<p class="text-stone-400 text-sm">Chargement…</p>';
+  try {
+    const res = await API.getLiveSessions(langId);
+    const sessions = res.data || [];
+    if (!sessions.length) {
+      list.innerHTML = `<div class="text-center py-12 text-stone-400">
+        <div class="text-4xl mb-3">🎙️</div>
+        <p class="text-sm">Aucune session active. Soyez le premier !</p></div>`;
+      return;
+    }
+    list.innerHTML = sessions.map(s => `
+      <div class="session-card bg-white" onclick="joinSession(${s.id})">
+        <div class="flex items-start justify-between gap-2">
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="status-dot ${s.status === 'live' ? 'live' : 'waiting'}"></span>
+              <span class="font-semibold text-stone-800 text-sm truncate">${escHtml(s.title)}</span>
+              ${s.status === 'live' ? '<span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">En direct</span>' : '<span class="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">Planifiée</span>'}
+            </div>
+            <p class="text-xs text-stone-500">
+              Animé par ${escHtml(s.host_first_name)} ${escHtml(s.host_last_name)} ·
+              ${s.language_name || ''} ·
+              ${s.participant_count || 0}/${s.max_participants} participants
+            </p>
+            ${s.description ? `<p class="text-xs text-stone-400 mt-1 truncate">${escHtml(s.description)}</p>` : ''}
+          </div>
+          <button class="ctrl-btn on text-xs whitespace-nowrap">
+            ${s.is_participant ? 'Rejoindre' : 'Participer'}
+          </button>
+        </div>
+      </div>`).join('');
+  } catch (err) {
+    list.innerHTML = `<p class="text-red-500 text-sm">${err.message}</p>`;
+  }
+}
+
+// ── Rejoindre une session ─────────────────────────────────────────────────────
+async function joinSession(sessionId) {
+  try {
+    // Rejoindre côté API si pas encore participant
+    try { await API.joinLiveSession(sessionId); } catch {}
+
+    // Récupérer les infos de la session
+    const sessRes = await API.getLiveSessions();
+    const sessions = sessRes.data || [];
+    currentSession = sessions.find(s => s.id === sessionId);
+
+    showRoom();
+    await startWebRTC(sessionId);
+  } catch (err) {
+    toast('Erreur: ' + err.message, true);
+  }
+}
+
+// ── Créer une session ─────────────────────────────────────────────────────────
+function showCreateModal() { document.getElementById('modal-create').classList.remove('hidden'); }
+function closeCreateModal() { document.getElementById('modal-create').classList.add('hidden'); }
+
+async function createSession() {
+  const title   = document.getElementById('new-title').value.trim();
+  const langId  = document.getElementById('new-lang').value;
+  const desc    = document.getElementById('new-desc').value.trim();
+  const maxPart = parseInt(document.getElementById('new-max').value) || 6;
+
+  if (!title || !langId) { toast('Titre et langue requis'); return; }
+
+  try {
+    const res = await API.createLiveSession({
+      title, language_id: langId, description: desc, max_participants: maxPart,
+    });
+    closeCreateModal();
+    await joinSession(res.data.id);
+  } catch (err) {
+    toast('Erreur: ' + err.message, true);
+  }
+}
+
+// ── WebRTC ────────────────────────────────────────────────────────────────────
+async function startWebRTC(sessionId) {
+  const token = Auth.getToken();
+  rtc = new WebRTCClient(API_BASE, token);
+
+  // Stream local
+  rtc.onLocalStream = (stream) => {
+    const vid = document.getElementById('video-local');
+    vid.srcObject = stream;
+  };
+
+  // Nouveau pair
+  rtc.onPeerJoined = (peerId, stream, info) => {
+    addPeerTile(peerId, stream, info);
+    updateParticipantsList();
+    updateParticipantCount();
+    toast(`${info.first_name || 'Participant'} a rejoint la session`);
+  };
+
+  // Pair parti
+  rtc.onPeerLeft = (peerId) => {
+    removePeerTile(peerId);
+    updateParticipantsList();
+    updateParticipantCount();
+  };
+
+  // Messages chat
+  rtc.onMessage = (peerId, text) => {
+    addChatMessage(text, false, peerId);
+  };
+
+  // Statut
+  rtc.onStatusChange = (status) => {
+    document.getElementById('status-text').textContent = status;
+  };
+
+  try {
+    await rtc.join(sessionId, { audio: true, video: true });
+
+    // Afficher le bouton "Démarrer" si on est l'hôte
+    const user = Auth.getUser();
+    if (currentSession && currentSession.host_user_id == user?.id && currentSession.status !== 'live') {
+      document.getElementById('btn-start-session').classList.remove('hidden');
+    }
+
+    startTimer();
+    updateParticipantsList();
+    updateParticipantCount();
+
+    // Mettre le statut en live dans le header de room
+    document.getElementById('room-status-dot').className = 'status-dot live';
+
+  } catch (err) {
+    toast('Erreur WebRTC: ' + err.message, true);
+    setStatus('Erreur de connexion');
+  }
+}
+
+// ── Tuiles vidéo ──────────────────────────────────────────────────────────────
+function addPeerTile(peerId, stream, info) {
+  const name = (info?.first_name || '') + ' ' + (info?.last_name || '') || `Participant ${peerId}`;
+  const initial = (info?.first_name?.[0] || '?').toUpperCase();
+  const grid = document.getElementById('video-grid');
+
+  const tile = document.createElement('div');
+  tile.className = 'video-tile';
+  tile.id = `tile-${peerId}`;
+  tile.innerHTML = `
+    <video id="video-${peerId}" autoplay playsinline></video>
+    <div class="avatar-fallback hidden" id="avatar-${peerId}">${initial}</div>
+    <div class="name-tag">${escHtml(name.trim())}</div>`;
+  grid.appendChild(tile);
+
+  const vid = document.getElementById(`video-${peerId}`);
+  vid.srcObject = stream;
+
+  // Afficher avatar si pas de vidéo
+  const track = stream.getVideoTracks()[0];
+  if (!track || !track.enabled) {
+    vid.classList.add('hidden');
+    document.getElementById(`avatar-${peerId}`).classList.remove('hidden');
+  }
+}
+
+function removePeerTile(peerId) {
+  document.getElementById(`tile-${peerId}`)?.remove();
+}
+
+// ── Contrôles ─────────────────────────────────────────────────────────────────
+function toggleMic() {
+  micEnabled = !micEnabled;
+  rtc?.setMicrophoneEnabled(micEnabled);
+  const btn = document.getElementById('btn-mic');
+  btn.className = `ctrl-btn ${micEnabled ? 'on' : 'off'} flex items-center gap-2`;
+  btn.innerHTML = micEnabled ? '🎤 Micro activé' : '🔇 Micro coupé';
+  document.getElementById('mic-indicator-local').style.opacity = micEnabled ? '1' : '0.3';
+}
+
+function toggleCam() {
+  camEnabled = !camEnabled;
+  rtc?.setCameraEnabled(camEnabled);
+  const btn = document.getElementById('btn-cam');
+  btn.className = `ctrl-btn ${camEnabled ? 'on' : 'off'} flex items-center gap-2`;
+  btn.innerHTML = camEnabled ? '📷 Caméra activée' : '🚫 Caméra éteinte';
+
+  const vid = document.getElementById('video-local');
+  const placeholder = document.getElementById('tile-local');
+  // Pas de fallback avatar côté local – juste on/off
+  vid.style.opacity = camEnabled ? '1' : '0.2';
+}
+
+async function handleStartSession() {
+  if (!currentSession) return;
+  try {
+    await API.startLiveSession(currentSession.id);
+    document.getElementById('btn-start-session').classList.add('hidden');
+    toast('Session démarrée !');
+  } catch (err) { toast(err.message, true); }
+}
+
+async function handleLeave() {
+  try {
+    if (rtc) { await rtc.leave(); rtc = null; }
+    if (currentSession) {
+      await API.leaveLiveSession(currentSession.id).catch(() => {});
+      currentSession = null;
+    }
+    stopTimer();
+    clearRoom();
+    showSessionList();
+    await loadSessions();
+  } catch {}
+}
+
+// ── Chat ──────────────────────────────────────────────────────────────────────
+function sendChat() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text || !rtc) return;
+  rtc.sendChat(text);
+  addChatMessage(text, true);
+  input.value = '';
+}
+
+function addChatMessage(text, isMe, peerId = null) {
+  const box = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = `chat-msg ${isMe ? 'me' : 'other'}`;
+  div.textContent = text;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+// ── Participants ──────────────────────────────────────────────────────────────
+function updateParticipantsList() {
+  const list = document.getElementById('participants-list');
+  const user = Auth.getUser();
+  let html = `<div class="flex items-center gap-2">
+    <div class="w-6 h-6 rounded-full bg-amber-200 flex items-center justify-center text-xs font-bold text-amber-800">
+      ${(user?.first_name?.[0] || '?').toUpperCase()}</div>
+    <span>${escHtml(user?.first_name || 'Vous')}</span>
+    <span class="text-xs text-amber-600">(vous)</span>
+  </div>`;
+
+  rtc?.peers.forEach((peer, id) => {
+    const info = peer.info || {};
+    const initial = (info.first_name?.[0] || '?').toUpperCase();
+    html += `<div class="flex items-center gap-2">
+      <div class="w-6 h-6 rounded-full bg-teal-200 flex items-center justify-center text-xs font-bold text-teal-800">${initial}</div>
+      <span>${escHtml((info.first_name || '') + ' ' + (info.last_name || '')).trim() || 'Participant'}</span>
+    </div>`;
+  });
+  list.innerHTML = html;
+}
+
+function updateParticipantCount() {
+  const count = 1 + (rtc?.participantCount || 0);
+  document.getElementById('participant-count').textContent =
+    `${count} participant${count > 1 ? 's' : ''}`;
+}
+
+// ── Timer ─────────────────────────────────────────────────────────────────────
+function startTimer() {
+  sessionStartTime = Date.now();
+  timerInterval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
+    const m = String(Math.floor(elapsed / 60)).padStart(2, '0');
+    const s = String(elapsed % 60).padStart(2, '0');
+    document.getElementById('room-timer').textContent = `${m}:${s}`;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+function showRoom() {
+  document.getElementById('view-sessions').classList.add('hidden');
+  document.getElementById('view-room').classList.remove('hidden');
+  if (currentSession) {
+    document.getElementById('room-title').textContent = currentSession.title || 'Session';
+    document.getElementById('room-lang').textContent = currentSession.language_name || '';
+  }
+}
+
+function showSessionList() {
+  document.getElementById('view-room').classList.add('hidden');
+  document.getElementById('view-sessions').classList.remove('hidden');
+}
+
+function clearRoom() {
+  // Réinitialiser la grille vidéo (garder seulement la tuile locale vide)
+  const grid = document.getElementById('video-grid');
+  const localTile = document.getElementById('tile-local');
+  grid.innerHTML = '';
+  const vid = document.getElementById('video-local');
+  if (vid) vid.srcObject = null;
+  grid.appendChild(localTile);
+
+  document.getElementById('chat-messages').innerHTML = '';
+  document.getElementById('participants-list').innerHTML = '';
+  document.getElementById('room-timer').textContent = '00:00';
+  document.getElementById('status-text').textContent = '';
+  document.getElementById('btn-start-session').classList.add('hidden');
+  document.getElementById('room-status-dot').className = 'status-dot waiting';
+
+  // Réinitialiser les boutons
+  micEnabled = true; camEnabled = true;
+  document.getElementById('btn-mic').className = 'ctrl-btn on flex items-center gap-2';
+  document.getElementById('btn-mic').innerHTML = '🎤 Micro activé';
+  document.getElementById('btn-cam').className = 'ctrl-btn on flex items-center gap-2';
+  document.getElementById('btn-cam').innerHTML = '📷 Caméra activée';
+}
+
+// ── Utilitaires ───────────────────────────────────────────────────────────────
+function setStatus(msg) {
+  document.getElementById('status-text').textContent = msg;
+}
+
+function toast(msg, isError = false) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.style.background = isError ? '#A32D2D' : '#2C2C2A';
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function handleLogout() {
+  if (rtc) { rtc.leave().catch(() => {}); }
+  API.logout();
+  window.location.href = 'login.html';
+}
+</script>
+</body>
+</html>

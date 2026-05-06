@@ -1,0 +1,41 @@
+# Configuration LiveKit pour Mboa
+# Serveur de visioconférence en temps réel
+
+port: 7880
+bind_addresses:
+  - "0.0.0.0"
+
+# Clés API (à changer en production)
+keys:
+  devkey: mboa_lingocameroon_livekit_secret_2024
+
+# Configuration RTC (WebRTC)
+rtc:
+  port_range_start: 50000
+  port_range_end: 60000
+  use_external_ip: false
+  # Configuration STUN/TURN (optionnel pour développement local)
+  # stun_servers:
+  #   - "stun.l.google.com:19302"
+  # turn_servers: []
+
+# Configuration des rooms
+room:
+  auto_create: true
+  empty_timeout: 300
+  max_participants: 100
+
+# Configuration Redis (optionnel, pour la scalabilité)
+# redis:
+#   address: "localhost:6379"
+#   password: ""
+#   db: 0
+
+# Logging
+logging:
+  pion_level: warn
+  level: info
+
+# Configuration Web (pour le dashboard admin)
+# web:
+#   address: ":7880"

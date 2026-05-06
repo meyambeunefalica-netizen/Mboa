@@ -1,0 +1,14 @@
+# Signaux WebRTC
+backend/api/signals/*.json
+
+# Environnement
+.env
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# LiveKit
+livekit_*.linux_amd64
+livekit.log
