@@ -2,32 +2,33 @@
 /**
  * Configuration de la base de données
  * Supporte MySQL et PostgreSQL
+ * Priorité aux variables d'environnement (Railway, Docker, etc.)
  */
 
 // Type de base de données: 'mysql' ou 'postgresql'
-define('DB_TYPE', 'postgresql');
+define('DB_TYPE', getenv('DB_TYPE') ?: 'postgresql');
 
 // Configuration MySQL
-define('MYSQL_HOST', 'localhost');
-define('MYSQL_PORT', '3306');
-define('MYSQL_DATABASE', 'lingocameroon');
-define('MYSQL_USERNAME', 'root');
-define('MYSQL_PASSWORD', '');
+define('MYSQL_HOST', getenv('MYSQL_HOST') ?: getenv('DB_HOST') ?: 'localhost');
+define('MYSQL_PORT', getenv('MYSQL_PORT') ?: getenv('DB_PORT') ?: '3306');
+define('MYSQL_DATABASE', getenv('MYSQL_DATABASE') ?: getenv('DB_NAME') ?: 'lingocameroon');
+define('MYSQL_USERNAME', getenv('MYSQL_USERNAME') ?: getenv('DB_USER') ?: 'root');
+define('MYSQL_PASSWORD', getenv('MYSQL_PASSWORD') ?: getenv('DB_PASSWORD') ?: '');
 
 // Configuration PostgreSQL
-define('PGSQL_HOST', '/var/run/postgresql');
-define('PGSQL_PORT', '5432');
-define('PGSQL_DATABASE', 'lingocameroon');
-define('PGSQL_USERNAME', 'postgres');
-define('PGSQL_PASSWORD', '');
+define('PGSQL_HOST', getenv('PGSQL_HOST') ?: getenv('DB_HOST') ?: '/var/run/postgresql');
+define('PGSQL_PORT', getenv('PGSQL_PORT') ?: getenv('DB_PORT') ?: '5432');
+define('PGSQL_DATABASE', getenv('PGSQL_DATABASE') ?: getenv('DB_NAME') ?: 'lingocameroon');
+define('PGSQL_USERNAME', getenv('PGSQL_USERNAME') ?: getenv('DB_USER') ?: 'postgres');
+define('PGSQL_PASSWORD', getenv('PGSQL_PASSWORD') ?: getenv('DB_PASSWORD') ?: '');
 
 // Configuration de l'application
-define('APP_NAME', 'Mboa');
-define('APP_URL', 'http://localhost:8000');
-define('APP_ENV', 'development'); // 'development' ou 'production'
+define('APP_NAME', getenv('APP_NAME') ?: 'Mboa');
+define('APP_URL', getenv('APP_URL') ?: 'http://localhost:8000');
+define('APP_ENV', getenv('APP_ENV') ?: 'development'); // 'development' ou 'production'
 
 // Clé secrète pour JWT (JSON Web Tokens)
-define('JWT_SECRET', 'mboa_lingocameroon_secret_key_2024');
+define('JWT_SECRET', getenv('JWT_SECRET') ?: 'mboa_lingocameroon_secret_key_2024');
 
 // Configuration des sessions
 define('SESSION_LIFETIME', 86400); // 24 heures en secondes
