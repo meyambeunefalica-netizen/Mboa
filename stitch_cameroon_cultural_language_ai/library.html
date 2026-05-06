@@ -157,6 +157,26 @@ document.addEventListener('DOMContentLoaded', () => {
     loadLibrary();
 });
 
+function getItemImage(item) {
+    const lang = (item.language_name || '').toLowerCase();
+    const cat = (item.category || '').toLowerCase();
+    const title = (item.title || '').toLowerCase();
+
+    if (lang.includes('bulu')) return '../image/bulu.jpeg';
+    if (lang.includes('beti')) return '../image/mbeti.jpeg';
+    if (lang.includes('bamileke')) return '../image/Bamileke_dancers.jpg';
+    if (lang.includes('ewondo')) return '../image/eton.jpeg';
+    if (lang.includes('douala')) return '../image/douala.jpeg';
+    if (lang.includes('bamoun')) return '../image/bamoun.jpeg';
+    if (cat.includes('mbouda') || title.includes('mbouda')) return '../image/mbouda.jpeg';
+    if (cat.includes('mbeti') || title.includes('mbeti')) return '../image/mbeti.jpeg';
+    if (cat.includes('bulu2') || title.includes('bulu2')) return '../image/bulu2.jpeg';
+    if (cat.includes('mbouda2') || title.includes('mbouda2')) return '../image/mbouda2.jpeg';
+    
+    const defaults = ['../image/bulu.jpeg', '../image/Bamileke_dancers.jpg', '../image/douala.jpeg', '../image/bamoun.jpeg'];
+    return defaults[(item.id || 0) % defaults.length];
+}
+
 async function loadLibrary() {
     try {
         const res = await API.getLibrary();
@@ -205,8 +225,8 @@ function renderLibrary(content) {
     html += `
     <div class="md:col-span-8 group cursor-pointer">
         <article onclick="openDetail(${mainItem.id})" class="bg-surface-container-lowest border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
-            <div class="aspect-[16/7] overflow-hidden bg-surface-container flex items-center justify-center">
-                <span class="material-symbols-outlined text-6xl text-primary opacity-30">${typeIcons[mainItem.content_type] || 'article'}</span>
+            <div class="aspect-[16/7] overflow-hidden bg-surface-container">
+                <img src="${getItemImage(mainItem)}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${escapeHtml(mainItem.title)}">
             </div>
             <div class="p-6 flex flex-col flex-1 border-b-4 ${borderColors[0]}">
                 <span class="font-label-md text-label-md text-tertiary-container uppercase mb-2">${escapeHtml(mainItem.category || mainItem.language_name || 'Culture')}</span>
@@ -224,8 +244,8 @@ function renderLibrary(content) {
         html += `
         <div class="md:col-span-4 group cursor-pointer">
             <article onclick="openDetail(${item.id})" class="bg-surface-container-lowest border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
-                <div class="aspect-square overflow-hidden bg-surface-container flex items-center justify-center">
-                    <span class="material-symbols-outlined text-4xl text-primary opacity-30">${typeIcons[item.content_type] || 'article'}</span>
+                <div class="aspect-square overflow-hidden bg-surface-container">
+                    <img src="${getItemImage(item)}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${escapeHtml(item.title)}">
                 </div>
                 <div class="p-6 flex flex-col flex-1 border-b-4 ${borderColors[i+1] || borderColors[0]}">
                     <span class="font-label-md text-label-md text-secondary uppercase mb-2">${escapeHtml(item.region || item.language_name || '')}</span>
@@ -244,14 +264,19 @@ function renderLibrary(content) {
         html += `<div class="md:col-span-12 mt-8"><h3 class="font-headline-md text-headline-md text-on-surface mb-6">More Content</h3><div class="grid grid-cols-1 md:grid-cols-3 gap-6">`;
         restItems.forEach(item => {
             html += `
-            <article onclick="openDetail(${item.id})" class="bg-white rounded-xl border border-outline-variant p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
-                <div class="flex items-center gap-2 mb-3">
-                    <span class="material-symbols-outlined text-sm text-primary">${typeIcons[item.content_type] || 'article'}</span>
-                    <span class="font-label-md text-xs uppercase text-tertiary-container">${escapeHtml(item.category || '')}</span>
+            <article onclick="openDetail(${item.id})" class="bg-white rounded-xl border border-outline-variant overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                <div class="aspect-[4/3] overflow-hidden">
+                    <img src="${getItemImage(item)}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${escapeHtml(item.title)}">
                 </div>
-                <h4 class="font-headline-md text-sm text-primary mb-2">${escapeHtml(item.title)}</h4>
-                <p class="text-sm text-on-surface-variant mb-3">${escapeHtml((item.content || '').substring(0, 100))}${item.content && item.content.length > 100 ? '...' : ''}</p>
-                <p class="text-xs text-stone-400">${item.language_name || ''}${item.region ? ' • ' + item.region : ''}</p>
+                <div class="p-4">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="material-symbols-outlined text-sm text-primary">${typeIcons[item.content_type] || 'article'}</span>
+                        <span class="font-label-md text-xs uppercase text-tertiary-container">${escapeHtml(item.category || '')}</span>
+                    </div>
+                    <h4 class="font-headline-md text-sm text-primary mb-2">${escapeHtml(item.title)}</h4>
+                    <p class="text-sm text-on-surface-variant mb-3">${escapeHtml((item.content || '').substring(0, 80))}${item.content && item.content.length > 80 ? '...' : ''}</p>
+                    <p class="text-xs text-stone-400">${item.language_name || ''}${item.region ? ' • ' + item.region : ''}</p>
+                </div>
             </article>`;
         });
         html += `</div></div>`;
@@ -265,6 +290,9 @@ async function openDetail(id) {
         const res = await API.getLibraryDetail(id);
         const item = res.data;
         document.getElementById('detail-content').innerHTML = `
+            <div class="aspect-video overflow-hidden rounded-xl mb-6">
+                <img src="${getItemImage(item)}" class="w-full h-full object-cover" alt="${escapeHtml(item.title)}">
+            </div>
             <span class="font-label-md text-label-md text-tertiary-container uppercase">${escapeHtml(item.category || '')}</span>
             <h2 class="font-headline-lg text-headline-lg text-primary mb-4">${escapeHtml(item.title)}</h2>
             <div class="flex items-center gap-4 text-sm text-stone-500 mb-6">
